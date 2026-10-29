@@ -4,12 +4,15 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import { AnimatePresence, motion } from "framer-motion";
+import { BootLoader, Cursor, DotField, ScrollProgress } from "../components/fx";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -114,10 +117,20 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  const path = useRouterState({ select: (s) => s.location.pathname });
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <DotField />
+      <div aria-hidden className="noise pointer-events-none fixed inset-0 z-[1] opacity-[0.04]" />
+      <ScrollProgress />
+      <Cursor />
+      <BootLoader />
+      <AnimatePresence mode="wait">
+        <motion.div key={path} className="relative z-[2]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </motion.div>
+      </AnimatePresence>
     </QueryClientProvider>
   );
 }
