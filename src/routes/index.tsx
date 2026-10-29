@@ -58,7 +58,7 @@ function Logo({ className = "", style }: { className?: string; style?: React.CSS
 
 function ServiceMap() {
   const [active, setActive] = useState(SERVICES[0].id);
-  const cur = SERVICES.find((s) => s.id === active)!;
+  const cur = SERVICES.find((s) => s.id === active) ?? SERVICES[0]!;
   const W = 640, H = 480, cx = 590, cy = H / 2;
   const rows = SERVICES.map((s, i) => ({ ...s, y: 40 + i * ((H - 80) / (SERVICES.length - 1)), x: 220 + (Math.abs(i - 3) * 50) }));
   return (
