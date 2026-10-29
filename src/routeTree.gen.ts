@@ -10,33 +10,154 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CompareRouteImport } from './routes/compare'
+import { Route as FinancingRouteImport } from './routes/financing'
+import { Route as ForVendorsRouteImport } from './routes/for-vendors'
+import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as WriteReviewRouteImport } from './routes/write-review'
+import { Route as BestSlugRouteImport } from './routes/best.$slug'
+import { Route as CategoriesIndexRouteImport } from './routes/categories.index'
+import { Route as CategoriesSlugRouteImport } from './routes/categories.$slug'
+import { Route as SoftwareSlugRouteImport } from './routes/software.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinancingRoute = FinancingRouteImport.update({
+  id: '/financing',
+  path: '/financing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForVendorsRoute = ForVendorsRouteImport.update({
+  id: '/for-vendors',
+  path: '/for-vendors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WriteReviewRoute = WriteReviewRouteImport.update({
+  id: '/write-review',
+  path: '/write-review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BestSlugRoute = BestSlugRouteImport.update({
+  id: '/best/$slug',
+  path: '/best/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriesIndexRoute = CategoriesIndexRouteImport.update({
+  id: '/categories/',
+  path: '/categories/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriesSlugRoute = CategoriesSlugRouteImport.update({
+  id: '/categories/$slug',
+  path: '/categories/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SoftwareSlugRoute = SoftwareSlugRouteImport.update({
+  id: '/software/$slug',
+  path: '/software/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
+  '/financing': typeof FinancingRoute
+  '/for-vendors': typeof ForVendorsRoute
+  '/reviews': typeof ReviewsRoute
+  '/write-review': typeof WriteReviewRoute
+  '/best/$slug': typeof BestSlugRoute
+  '/categories/$slug': typeof CategoriesSlugRoute
+  '/software/$slug': typeof SoftwareSlugRoute
+  '/categories/': typeof CategoriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
+  '/financing': typeof FinancingRoute
+  '/for-vendors': typeof ForVendorsRoute
+  '/reviews': typeof ReviewsRoute
+  '/write-review': typeof WriteReviewRoute
+  '/best/$slug': typeof BestSlugRoute
+  '/categories/$slug': typeof CategoriesSlugRoute
+  '/software/$slug': typeof SoftwareSlugRoute
+  '/categories': typeof CategoriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
+  '/financing': typeof FinancingRoute
+  '/for-vendors': typeof ForVendorsRoute
+  '/reviews': typeof ReviewsRoute
+  '/write-review': typeof WriteReviewRoute
+  '/best/$slug': typeof BestSlugRoute
+  '/categories/$slug': typeof CategoriesSlugRoute
+  '/software/$slug': typeof SoftwareSlugRoute
+  '/categories/': typeof CategoriesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/compare'
+    | '/financing'
+    | '/for-vendors'
+    | '/reviews'
+    | '/write-review'
+    | '/best/$slug'
+    | '/categories/$slug'
+    | '/software/$slug'
+    | '/categories/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/compare'
+    | '/financing'
+    | '/for-vendors'
+    | '/reviews'
+    | '/write-review'
+    | '/best/$slug'
+    | '/categories/$slug'
+    | '/software/$slug'
+    | '/categories'
+  id:
+    | '__root__'
+    | '/'
+    | '/compare'
+    | '/financing'
+    | '/for-vendors'
+    | '/reviews'
+    | '/write-review'
+    | '/best/$slug'
+    | '/categories/$slug'
+    | '/software/$slug'
+    | '/categories/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CompareRoute: typeof CompareRoute
+  FinancingRoute: typeof FinancingRoute
+  ForVendorsRoute: typeof ForVendorsRoute
+  ReviewsRoute: typeof ReviewsRoute
+  WriteReviewRoute: typeof WriteReviewRoute
+  BestSlugRoute: typeof BestSlugRoute
+  CategoriesSlugRoute: typeof CategoriesSlugRoute
+  SoftwareSlugRoute: typeof SoftwareSlugRoute
+  CategoriesIndexRoute: typeof CategoriesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +169,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financing': {
+      id: '/financing'
+      path: '/financing'
+      fullPath: '/financing'
+      preLoaderRoute: typeof FinancingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for-vendors': {
+      id: '/for-vendors'
+      path: '/for-vendors'
+      fullPath: '/for-vendors'
+      preLoaderRoute: typeof ForVendorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/write-review': {
+      id: '/write-review'
+      path: '/write-review'
+      fullPath: '/write-review'
+      preLoaderRoute: typeof WriteReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/best/$slug': {
+      id: '/best/$slug'
+      path: '/best/$slug'
+      fullPath: '/best/$slug'
+      preLoaderRoute: typeof BestSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categories/': {
+      id: '/categories/'
+      path: '/categories'
+      fullPath: '/categories/'
+      preLoaderRoute: typeof CategoriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categories/$slug': {
+      id: '/categories/$slug'
+      path: '/categories/$slug'
+      fullPath: '/categories/$slug'
+      preLoaderRoute: typeof CategoriesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/software/$slug': {
+      id: '/software/$slug'
+      path: '/software/$slug'
+      fullPath: '/software/$slug'
+      preLoaderRoute: typeof SoftwareSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CompareRoute: CompareRoute,
+  FinancingRoute: FinancingRoute,
+  ForVendorsRoute: ForVendorsRoute,
+  ReviewsRoute: ReviewsRoute,
+  WriteReviewRoute: WriteReviewRoute,
+  BestSlugRoute: BestSlugRoute,
+  CategoriesSlugRoute: CategoriesSlugRoute,
+  SoftwareSlugRoute: SoftwareSlugRoute,
+  CategoriesIndexRoute: CategoriesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
