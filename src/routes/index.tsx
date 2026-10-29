@@ -1,3 +1,4 @@
+import type React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
@@ -47,9 +48,9 @@ const TOP = [
   { name: "Thanx", cat: "Loyalty", score: 4.4, n: 288 },
 ];
 
-function Logo({ className = "" }: { className?: string }) {
+function Logo({ className = "", style }: { className?: string; style?: React.CSSProperties }) {
   return (
-    <div className={`grid place-items-center rounded-2xl bg-primary text-primary-foreground font-bold ${className}`}>
+    <div style={style} className={`grid place-items-center rounded-2xl bg-primary text-primary-foreground font-bold ${className}`}>
       <span className="font-mono">hs</span>
     </div>
   );
@@ -88,8 +89,7 @@ function ServiceMap() {
             <span className={`h-3 w-3 rounded-full bg-primary transition-transform ${r.id === active ? "scale-150 shadow-[0_0_16px_var(--primary)]" : ""}`} />
           </button>
         ))}
-        <Logo className="absolute h-14 w-14 md:h-16 md:w-16 -translate-y-1/2 -translate-x-1/2 text-xl shadow-[0_0_40px_color-mix(in_oklab,var(--primary)_50%,transparent)]" />
-        <div className="absolute" style={{ left: `${((cx) / W) * 100}%`, top: "50%" }} />
+        <Logo className="absolute h-14 w-14 md:h-16 md:w-16 -translate-y-1/2 -translate-x-1/2 text-xl shadow-[0_0_40px_color-mix(in_oklab,var(--primary)_50%,transparent)]" style={{ left: `${(cx / W) * 100}%`, top: "50%" }} />
       </div>
       <div key={cur.id} className="rounded-xl border border-border bg-card p-8 animate-in fade-in slide-in-from-right-4 duration-300">
         <cur.icon className="h-8 w-8 text-primary" />
