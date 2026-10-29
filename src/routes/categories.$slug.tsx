@@ -82,7 +82,7 @@ function Page() {
             <h2 className="text-2xl font-bold">FAQ</h2>
             <Accordion type="single" collapsible className="mt-3">
               {[[`How do I choose ${c.name.toLowerCase()}?`, "Start with your service model and volume, then compare total cost (fees, hardware, add-ons) and support quality."], ["Are reviews verified?", "Reviews come from operators we have spoken with and are published with their permission."], ["Do you get paid by providers?", "Some providers pay referral or lead fees. That never affects ratings — see our methodology."]].map(([q, a]) => (
-                <AccordionItem key={q} value={q}><AccordionTrigger>{q}</AccordionTrigger><AccordionContent className="text-muted-foreground">{a}</AccordionContent></AccordionItem>
+                <AccordionItem key={q as string} value={q as string}><AccordionTrigger>{q}</AccordionTrigger><AccordionContent className="text-muted-foreground">{a}</AccordionContent></AccordionItem>
               ))}
             </Accordion>
           </div>
