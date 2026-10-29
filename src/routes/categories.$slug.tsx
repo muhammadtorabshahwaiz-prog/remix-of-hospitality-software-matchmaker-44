@@ -73,7 +73,7 @@ function Page() {
             <h2 className="text-2xl font-bold">Best for</h2>
             <ul className="mt-5 space-y-3">
               {[["Food trucks", "Mobile hardware and offline mode"], ["Full-service", "Tableside ordering and coursing"], ["Multi-location groups", "Central menus and reporting"]].map(([a, b]) => (
-                <li key={a} className="border border-border bg-card p-4"><div className="font-semibold">{a}</div><div className="text-sm text-muted-foreground">{b}</div></li>
+                <li key={a as string} className="border border-border bg-card p-4"><div className="font-semibold">{a as string}</div><div className="text-sm text-muted-foreground">{b}</div></li>
               ))}
             </ul>
             {best && <Link to="/best/$slug" params={{ slug: best.slug }} className="mt-5 inline-block text-sm text-primary">See ranking: {best.title}</Link>}

@@ -3,12 +3,12 @@ import { Check, Minus } from "lucide-react";
 import { Empty, PageHead, Sample, Section, Stars } from "@/components/site";
 import { getCategory, getProvider, type Provider } from "@/data/site";
 
-type S = { a?: string; b?: string; c?: string };
+type S = { a?: string | undefined; b?: string | undefined; c?: string | undefined };
 export const Route = createFileRoute("/compare")({
   validateSearch: (s: Record<string, unknown>): S => ({
-    a: typeof s.a === "string" && s.a ? s.a : undefined,
-    b: typeof s.b === "string" && s.b ? s.b : undefined,
-    c: typeof s.c === "string" && s.c ? s.c : undefined,
+    a: typeof s["a"] === "string" && s["a"] ? s["a"] : undefined,
+    b: typeof s["b"] === "string" && s["b"] ? s["b"] : undefined,
+    c: typeof s["c"] === "string" && s["c"] ? s["c"] : undefined,
   }),
   head: () => ({ meta: [
     { title: "Compare Restaurant Software Side by Side — Hospitalityservis" },

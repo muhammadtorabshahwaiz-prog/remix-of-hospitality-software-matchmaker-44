@@ -10,10 +10,16 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as CompareRouteImport } from './routes/compare'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DisclosureRouteImport } from './routes/disclosure'
 import { Route as FinancingRouteImport } from './routes/financing'
 import { Route as ForVendorsRouteImport } from './routes/for-vendors'
+import { Route as MethodologyRouteImport } from './routes/methodology'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WriteReviewRouteImport } from './routes/write-review'
 import { Route as BestSlugRouteImport } from './routes/best.$slug'
 import { Route as CategoriesIndexRouteImport } from './routes/categories.index'
@@ -25,9 +31,24 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CompareRoute = CompareRouteImport.update({
   id: '/compare',
   path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisclosureRoute = DisclosureRouteImport.update({
+  id: '/disclosure',
+  path: '/disclosure',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FinancingRoute = FinancingRouteImport.update({
@@ -40,9 +61,24 @@ const ForVendorsRoute = ForVendorsRouteImport.update({
   path: '/for-vendors',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MethodologyRoute = MethodologyRouteImport.update({
+  id: '/methodology',
+  path: '/methodology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReviewsRoute = ReviewsRouteImport.update({
   id: '/reviews',
   path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WriteReviewRoute = WriteReviewRouteImport.update({
@@ -73,10 +109,16 @@ const SoftwareSlugRoute = SoftwareSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/compare': typeof CompareRoute
+  '/contact': typeof ContactRoute
+  '/disclosure': typeof DisclosureRoute
   '/financing': typeof FinancingRoute
   '/for-vendors': typeof ForVendorsRoute
+  '/methodology': typeof MethodologyRoute
+  '/privacy': typeof PrivacyRoute
   '/reviews': typeof ReviewsRoute
+  '/terms': typeof TermsRoute
   '/write-review': typeof WriteReviewRoute
   '/best/$slug': typeof BestSlugRoute
   '/categories/$slug': typeof CategoriesSlugRoute
@@ -85,10 +127,16 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/compare': typeof CompareRoute
+  '/contact': typeof ContactRoute
+  '/disclosure': typeof DisclosureRoute
   '/financing': typeof FinancingRoute
   '/for-vendors': typeof ForVendorsRoute
+  '/methodology': typeof MethodologyRoute
+  '/privacy': typeof PrivacyRoute
   '/reviews': typeof ReviewsRoute
+  '/terms': typeof TermsRoute
   '/write-review': typeof WriteReviewRoute
   '/best/$slug': typeof BestSlugRoute
   '/categories/$slug': typeof CategoriesSlugRoute
@@ -98,10 +146,16 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/compare': typeof CompareRoute
+  '/contact': typeof ContactRoute
+  '/disclosure': typeof DisclosureRoute
   '/financing': typeof FinancingRoute
   '/for-vendors': typeof ForVendorsRoute
+  '/methodology': typeof MethodologyRoute
+  '/privacy': typeof PrivacyRoute
   '/reviews': typeof ReviewsRoute
+  '/terms': typeof TermsRoute
   '/write-review': typeof WriteReviewRoute
   '/best/$slug': typeof BestSlugRoute
   '/categories/$slug': typeof CategoriesSlugRoute
@@ -112,10 +166,16 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/compare'
+    | '/contact'
+    | '/disclosure'
     | '/financing'
     | '/for-vendors'
+    | '/methodology'
+    | '/privacy'
     | '/reviews'
+    | '/terms'
     | '/write-review'
     | '/best/$slug'
     | '/categories/$slug'
@@ -124,10 +184,16 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/compare'
+    | '/contact'
+    | '/disclosure'
     | '/financing'
     | '/for-vendors'
+    | '/methodology'
+    | '/privacy'
     | '/reviews'
+    | '/terms'
     | '/write-review'
     | '/best/$slug'
     | '/categories/$slug'
@@ -136,10 +202,16 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/compare'
+    | '/contact'
+    | '/disclosure'
     | '/financing'
     | '/for-vendors'
+    | '/methodology'
+    | '/privacy'
     | '/reviews'
+    | '/terms'
     | '/write-review'
     | '/best/$slug'
     | '/categories/$slug'
@@ -149,10 +221,16 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   CompareRoute: typeof CompareRoute
+  ContactRoute: typeof ContactRoute
+  DisclosureRoute: typeof DisclosureRoute
   FinancingRoute: typeof FinancingRoute
   ForVendorsRoute: typeof ForVendorsRoute
+  MethodologyRoute: typeof MethodologyRoute
+  PrivacyRoute: typeof PrivacyRoute
   ReviewsRoute: typeof ReviewsRoute
+  TermsRoute: typeof TermsRoute
   WriteReviewRoute: typeof WriteReviewRoute
   BestSlugRoute: typeof BestSlugRoute
   CategoriesSlugRoute: typeof CategoriesSlugRoute
@@ -169,11 +247,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/compare': {
       id: '/compare'
       path: '/compare'
       fullPath: '/compare'
       preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disclosure': {
+      id: '/disclosure'
+      path: '/disclosure'
+      fullPath: '/disclosure'
+      preLoaderRoute: typeof DisclosureRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/financing': {
@@ -190,11 +289,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForVendorsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/methodology': {
+      id: '/methodology'
+      path: '/methodology'
+      fullPath: '/methodology'
+      preLoaderRoute: typeof MethodologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reviews': {
       id: '/reviews'
       path: '/reviews'
       fullPath: '/reviews'
       preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/write-review': {
@@ -237,10 +357,16 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   CompareRoute: CompareRoute,
+  ContactRoute: ContactRoute,
+  DisclosureRoute: DisclosureRoute,
   FinancingRoute: FinancingRoute,
   ForVendorsRoute: ForVendorsRoute,
+  MethodologyRoute: MethodologyRoute,
+  PrivacyRoute: PrivacyRoute,
   ReviewsRoute: ReviewsRoute,
+  TermsRoute: TermsRoute,
   WriteReviewRoute: WriteReviewRoute,
   BestSlugRoute: BestSlugRoute,
   CategoriesSlugRoute: CategoriesSlugRoute,

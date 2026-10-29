@@ -19,7 +19,7 @@ export function Cursor() {
       const field = t.closest("input,textarea,select");
       const hot = t.closest("a,button,[role=button]");
       el.style.opacity = field ? "0" : "1";
-      el.dataset.hot = hot ? "1" : "0";
+      el.dataset["hot"] = hot ? "1" : "0";
     };
     const tick = () => {
       x += (tx - x) * 0.2; y += (ty - y) * 0.2;
@@ -159,7 +159,7 @@ export function Magnetic({ children, className }: { children: ReactNode; classNa
 }
 
 /* Card: spotlight + optional tilt/glare + brackets */
-export function Card({ children, className = "", tilt = false, style }: { children: ReactNode; className?: string; tilt?: boolean; style?: CSSProperties }) {
+export function Card({ children, className = "", tilt = false, style }: { children: ReactNode; className?: string; tilt?: boolean; style?: CSSProperties | undefined }) {
   const ref = useRef<HTMLDivElement>(null);
   const rx = useSpring(0, { stiffness: 150, damping: 15 }), ry = useSpring(0, { stiffness: 150, damping: 15 });
   const onMove = (e: React.PointerEvent) => {
@@ -170,7 +170,7 @@ export function Card({ children, className = "", tilt = false, style }: { childr
   };
   const onLeave = () => { rx.set(0); ry.set(0); };
   return (
-    <motion.div ref={ref} onPointerMove={onMove} onPointerLeave={onLeave} style={{ rotateX: rx, rotateY: ry, transformPerspective: 900, ...style }}
+    <motion.div ref={ref} onPointerMove={onMove} onPointerLeave={onLeave} style={{ rotateX: rx, rotateY: ry, transformPerspective: 900, ...(style as object) }}
       className={`group/card brackets border border-border bg-card ${className}`}>
       <div aria-hidden className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/card:opacity-100" style={{ background: "radial-gradient(320px circle at var(--mx) var(--my), color-mix(in oklab, var(--primary) 12%, transparent), transparent 70%)" }} />
       {tilt && <div aria-hidden className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover/card:opacity-100" style={{ background: "radial-gradient(180px circle at var(--mx) var(--my), color-mix(in oklab, var(--foreground) 10%, transparent), transparent 60%)" }} />}

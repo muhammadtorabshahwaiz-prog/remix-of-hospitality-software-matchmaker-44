@@ -69,7 +69,7 @@ const BODIES = [
 export const REVIEWS: Review[] = PROVIDERS.flatMap((p, pi) =>
   [0, 1].map((k) => {
     const a = AUTHORS[(pi + k) % AUTHORS.length]!, b = BODIES[(pi + k) % BODIES.length]!;
-    return { id: `${p.slug}-${k}`, provider: p.slug, author: a[0], role: a[1], business: a[2], rating: Math.max(3, Math.min(5, Math.round(p.score - k * 0.6))), title: b[0], body: b[1], date: `2026-${String(((pi + k) % 9) + 1).padStart(2, "0")}-${String(((pi * 3) % 27) + 1).padStart(2, "0")}` };
+    return { id: `${p.slug}-${k}`, provider: p.slug, author: a[0], role: a[1], business: a[2], rating: Math.max(3, Math.min(5, Math.round(p.score - k * 0.6))), title: b[0] as string, body: b[1] as string, date: `2026-${String(((pi + k) % 9) + 1).padStart(2, "0")}-${String(((pi * 3) % 27) + 1).padStart(2, "0")}` };
   }),
 );
 
