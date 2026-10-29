@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { useEffect, useState } from "react";
 import { Card } from "@/components/fx";
 import { Btn, Empty, PageHead, Sample, Section, SkeletonCards, Stars, inputCls } from "@/components/site";
 import { CATEGORIES, REVIEWS, getProvider } from "@/data/site";
 
 export const Route = createFileRoute("/reviews")({
-  head: () => ({ meta: [
+  head: () => ({ links: [canonical("/reviews")], meta: [
     { title: "Restaurant Software Reviews from Operators — Hospitalityservis" },
     { name: "description", content: "Honest reviews of POS, payments, AI phone, suppliers and more from restaurant and food truck operators." },
     { property: "og:title", content: "Operator Reviews — Hospitalityservis" },

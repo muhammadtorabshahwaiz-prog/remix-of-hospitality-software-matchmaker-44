@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { useState } from "react";
 import { Search } from "lucide-react";
 import { Card, Reveal } from "@/components/fx";
@@ -6,7 +7,7 @@ import { CatIcon, Empty, PageHead, Section, inputCls } from "@/components/site";
 import { CATEGORIES, providersIn } from "@/data/site";
 
 export const Route = createFileRoute("/categories/")({
-  head: () => ({ meta: [
+  head: () => ({ links: [canonical("/categories")], meta: [
     { title: "Restaurant Software Categories — Hospitalityservis" },
     { name: "description", content: "Browse every restaurant software and service category: POS, payments, AI phone, funding, reservations, suppliers and more." },
     { property: "og:title", content: "Restaurant Software Categories — Hospitalityservis" },

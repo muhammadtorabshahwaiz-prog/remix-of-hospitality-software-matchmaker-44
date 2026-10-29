@@ -3,4 +3,20 @@
 - [x] Split into routes with shared nav/footer
 - [x] Breadcrumbs, cmd+K palette, compare tray, empty states, skeletons, 404
 - [x] Label placeholder data "Sample"
-- [ ] Save forms / reviews to a real backend (waiting on user to approve enabling Cloud)
+- [x] Sample data cleanup: unique descriptions, varied reviewers, price tiers instead of invented prices, truthful home stats
+- [x] Forms validated with zod, honeypot, client rate limit, consent checkbox, review sub-ratings + incentive/relationship disclosure (src/lib/submit.ts, src/components/forms.tsx)
+- [x] Forms say "Preview mode" until a backend exists (BACKEND_ENABLED = false)
+- [x] Sponsored/Featured label component + open sponsored slot on category pages
+- [x] /go/:slug partner landing pages with UTM/referrer/partner capture (src/data/partners.ts)
+- [x] Embeddable "Reviewed on Hospitalityservis" badge for claimed vendors
+- [x] Trust bar, affiliate disclosure, honest cookie notice
+- [x] SEO: canonical tags, Organization/Breadcrumb/FAQ JSON-LD, sitemap.xml, robots Sitemap line
+- [ ] Set the real domain in src/lib/site-config.ts and public/sitemap.xml (currently https://hospitalityservis.com)
+- [ ] Connect Lovable Cloud (Supabase) and implement the live branch in src/lib/submit.ts, then set BACKEND_ENABLED = true
+- [ ] Email notifications (Resend) for new leads and reviews
+- [ ] Review moderation + verified_at; show "Verified" only when set
+- [ ] Vendor dashboard (/vendor) and admin panel (/admin), Stripe billing for Pro
+- [ ] Claim-this-profile flow; review-request email after a lead converts
+- [ ] Analytics (Plausible/GA4) with consent; add events for Request Demo, Compare, Write Review
+- [ ] Replace sample providers/reviews with real data; remove noindex from /go/* once content is approved
+- [ ] Regenerate public/sitemap.xml when providers change (or add a server route)

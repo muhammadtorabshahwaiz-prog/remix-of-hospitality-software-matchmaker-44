@@ -5,6 +5,7 @@ import { Search, Star, X, ChevronRight, BadgeCheck, Menu, GitCompare, Inbox } fr
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { CATEGORIES, PROVIDERS, getCategory, getProvider, type Provider } from "@/data/site";
 import { Card, Magnetic, Reveal, ScoreBar } from "./fx";
+import { AffiliateNote, SponsoredBadge, TrustBar } from "./trust";
 
 /* ---------- compare store ---------- */
 let compare: string[] = [];
@@ -105,7 +106,7 @@ export function ProviderCard({ p, rank }: { p: Provider; rank?: number }) {
       <p className="mt-4 text-sm text-muted-foreground">{p.tagline}</p>
       <div className="mt-4"><ScoreBar value={p.score} /></div>
       <div className="mt-4 flex flex-wrap gap-2 font-mono text-[11px] uppercase text-muted-foreground">
-        <span>{p.reviews.toLocaleString()} reviews</span><span>/</span><span>{p.priceLabel}</span><span>/</span><Sample />
+        <span>{p.reviews.toLocaleString()} reviews</span><span>/</span><span>{p.priceLabel}</span><span>/</span><Sample />{p.sponsored && <SponsoredBadge />}
       </div>
       <div className="mt-auto flex items-center justify-between pt-5">
         <label className="flex cursor-pointer items-center gap-2 text-sm">
@@ -224,6 +225,7 @@ export function Footer() {
   ];
   return (
     <footer className="relative border-t border-border bg-background/80 pb-24">
+      <TrustBar />
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.3fr_repeat(4,1fr)]">
         <div>
           <div className="flex items-center gap-3"><Logo /><span className="font-semibold">Hospitalityservis</span></div>
@@ -240,6 +242,7 @@ export function Footer() {
         <span>© 2026 Hospitalityservis</span>
         <span>Reviews reflect genuine experiences. Commercial relationships disclosed.</span>
       </div>
+      <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6"><AffiliateNote /></div>
     </footer>
   );
 }

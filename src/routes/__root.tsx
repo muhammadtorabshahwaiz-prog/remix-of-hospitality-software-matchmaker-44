@@ -16,6 +16,9 @@ import { CompareTray, Footer, Nav } from "../components/site";
 import { BootLoader, Cursor, DotField, ScrollProgress } from "../components/fx";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { CookieBanner } from "../components/trust";
+import { captureAttribution } from "../lib/submit";
+import { jsonLd, organizationLd } from "../lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -95,6 +98,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter+Tight:wght@400;500;600;700&display=swap" },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
+    scripts: [jsonLd(organizationLd())],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -120,6 +124,8 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   const path = useRouterState({ select: (s) => s.location.pathname });
+  // Remember UTM params / referrer for lead attribution.
+  useEffect(() => { captureAttribution(); }, []);
   return (
     <QueryClientProvider client={queryClient}>
       <DotField />
@@ -136,6 +142,7 @@ function RootComponent() {
         </motion.div>
       </AnimatePresence>
       <CompareTray />
+      <CookieBanner />
     </QueryClientProvider>
   );
 }

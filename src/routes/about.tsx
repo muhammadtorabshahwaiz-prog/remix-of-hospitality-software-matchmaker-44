@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { Card, Reveal } from "@/components/fx";
 import { PageHead, Section } from "@/components/site";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({ meta: [
+  head: () => ({ links: [canonical("/about")], meta: [
     { title: "About Hospitalityservis" },
     { name: "description", content: "The network behind hospitality. Hospitalityservis is the professional network and trusted marketplace for the restaurant industry." },
     { property: "og:title", content: "About Hospitalityservis" },

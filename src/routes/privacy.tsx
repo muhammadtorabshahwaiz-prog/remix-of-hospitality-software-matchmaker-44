@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { Card, Reveal } from "@/components/fx";
 import { PageHead, Section } from "@/components/site";
 
 export const Route = createFileRoute("/privacy")({
-  head: () => ({ meta: [
+  head: () => ({ links: [canonical("/privacy")], meta: [
     { title: "Privacy Policy \u2014 Hospitalityservis" },
     { name: "description", content: "Placeholder policy \u2014 have counsel review before launch." },
     { property: "og:title", content: "Privacy Policy \u2014 Hospitalityservis" },

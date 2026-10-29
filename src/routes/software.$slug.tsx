@@ -4,10 +4,21 @@ import { Check, Minus, BadgeCheck, CircleDashed } from "lucide-react";
 import { Card, Reveal, ScoreBar } from "@/components/fx";
 import { Btn, Crumbs, Empty, Logo, ProviderCard, Sample, Section, Stars, compareStore, useCompare, inputCls } from "@/components/site";
 import { getCategory, getProvider, providersIn, reviewsFor } from "@/data/site";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { FormError, Honeypot, Sent, bool, str, useSubmit } from "@/components/forms";
+import { AffiliateNote, EmbedBadge, SponsoredBadge } from "@/components/trust";
+import { submitLead } from "@/lib/submit";
+import { breadcrumbLd, canonical, jsonLd, softwareLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/software/$slug")({
   loader: ({ params }) => { const p = getProvider(params.slug); if (!p) throw notFound(); return p; },
-  head: ({ loaderData }) => ({ meta: loaderData ? [
+  head: ({ loaderData }) => ({
+    links: loaderData ? [canonical(`/software/${loaderData.slug}`)] : [],
+    scripts: loaderData ? [
+      jsonLd(softwareLd(loaderData, reviewsFor(loaderData.slug))),
+      jsonLd(breadcrumbLd([{ name: "Home", path: "/" }, { name: "Categories", path: "/categories" }, { name: getCategory(loaderData.category)?.name ?? "Category", path: `/categories/${loaderData.category}` }, { name: loaderData.name, path: `/software/${loaderData.slug}` }])),
+    ] : [],
+    meta: loaderData ? [
     { title: `${loaderData.name} Reviews, Pricing & Alternatives — Hospitalityservis` },
     { name: "description", content: `${loaderData.name}: ${loaderData.tagline} Ratings, pros and cons from restaurant operators.` },
     { property: "og:title", content: `${loaderData.name} Reviews — Hospitalityservis` },
@@ -24,7 +35,7 @@ function Page() {
   const cat = getCategory(p.category)!;
   const sel = useCompare();
   const [minStars, setMinStars] = useState(0);
-  const [asked, setAsked] = useState(false);
+  const [askOpen, setAskOpen] = useState(false);
   const reviews = reviewsFor(p.slug).filter((r) => r.rating >= minStars);
   const alts = providersIn(p.category).filter((x) => x.slug !== p.slug);
   return (
@@ -42,12 +53,13 @@ function Page() {
                     ? <span className="inline-flex items-center gap-1 border border-primary/50 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-primary"><BadgeCheck className="h-3 w-3" />Claimed</span>
                     : <span className="inline-flex items-center gap-1 border border-border px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground"><CircleDashed className="h-3 w-3" />Unclaimed</span>}
                   <Sample />
+                  {p.sponsored && <SponsoredBadge />}
                 </div>
                 <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-muted-foreground"><Stars value={p.score} /> {p.reviews.toLocaleString()} reviews · {cat.name}</div>
               </div>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Btn onClick={() => setAsked(true)}>{asked ? "Request sent" : "Request Demo / Get Quote"}</Btn>
+              <Btn onClick={() => setAskOpen(true)}>Request Demo / Get Quote</Btn>
               <Btn variant="ghost" onClick={() => compareStore.toggle(p.slug)}>{sel.includes(p.slug) ? "Remove from compare" : "Add to compare"}</Btn>
             </div>
           </Reveal>
@@ -95,6 +107,8 @@ function Page() {
               <div className="mt-3 font-mono text-2xl text-primary">{p.priceLabel}</div>
               <div className="mt-2 text-sm text-muted-foreground">{p.contract} · Pricing varies by setup; confirm with the provider.</div>
             </Card>
+            {p.claimed && <EmbedBadge slug={p.slug} name={p.name} />}
+            <AffiliateNote />
           </aside>
         </div>
       </Section>
@@ -104,6 +118,40 @@ function Page() {
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{alts.map((a) => <ProviderCard key={a.slug} p={a} />)}</div>
         </Section>
       )}
+      <DemoDialog open={askOpen} onOpenChange={setAskOpen} provider={p.name} />
     </>
+  );
+}
+
+function DemoDialog({ open, onOpenChange, provider }: { open: boolean; onOpenChange: (v: boolean) => void; provider: string }) {
+  const consentText = `I agree to share my details with ${provider} so they can contact me about a demo or quote.`;
+  const { busy, sent, err, onSubmit } = useSubmit((fd) => submitLead({
+    type: "demo", product: provider, name: str(fd, "name"), email: str(fd, "email"), restaurant: str(fd, "restaurant"),
+    phone: str(fd, "phone"), city: str(fd, "city"), notes: str(fd, "notes"),
+    consent: bool(fd, "consent"), consent_text: consentText, company_url: str(fd, "company_url"),
+  }));
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-lg">
+        <DialogHeader>
+          <DialogTitle>Request a demo or quote from {provider}</DialogTitle>
+          <DialogDescription>Free for operators, no obligation. Your details are shared only if you tick the consent box.</DialogDescription>
+        </DialogHeader>
+        {sent ? <Sent mode={sent}>Request received for {provider}.</Sent> : (
+          <form onSubmit={onSubmit} noValidate className="relative grid gap-3">
+            <Honeypot />
+            <input name="name" required maxLength={100} placeholder="Your name" className={inputCls} />
+            <input name="restaurant" maxLength={120} placeholder="Restaurant or business" className={inputCls} />
+            <input name="email" required type="email" maxLength={255} placeholder="Email" className={inputCls} />
+            <input name="phone" type="tel" maxLength={40} placeholder="Phone (optional)" className={inputCls} />
+            <input name="city" maxLength={120} placeholder="City, State" className={inputCls} />
+            <textarea name="notes" rows={3} maxLength={2000} placeholder="What do you need help with?" className={inputCls} />
+            <label className="flex items-start gap-2 text-sm text-muted-foreground"><input name="consent" type="checkbox" className="mt-1 accent-[var(--primary)]" />{consentText}</label>
+            <FormError message={err} />
+            <div><Btn type="submit">{busy ? "Sending..." : "Send request"}</Btn></div>
+          </form>
+        )}
+      </DialogContent>
+    </Dialog>
   );
 }

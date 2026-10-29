@@ -1,13 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { CreditCard, Truck, Landmark, PhoneCall, Megaphone, Wrench, Star, Search, Handshake, TrendingUp, ShieldCheck, ArrowRight, MessageSquare, Check } from "lucide-react";
+import { CreditCard, Truck, Landmark, PhoneCall, Megaphone, Wrench, Star, Search, Handshake, TrendingUp, ShieldCheck, ArrowRight, MessageSquare } from "lucide-react";
 import { motion } from "framer-motion";
 import { Card, CountUp, HeroSquares, Marquee, MaskLine, Reveal, Scramble } from "@/components/fx";
 import { Btn, CatIcon, Eyebrow, Logo, ProviderCard, Sample, Section, Stars, inputCls } from "@/components/site";
+import { FormError, Honeypot, Sent, bool, str, useSubmit } from "@/components/forms";
+import { submitLead } from "@/lib/submit";
+import { canonical } from "@/lib/seo";
 import { CATEGORIES, PROVIDERS, REVIEWS, getProvider } from "@/data/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
+    links: [canonical("/")],
     meta: [
       { title: "Hospitalityservis — Where hospitality connects, evaluates, and grows" },
       { name: "description", content: "The professional network and trusted marketplace for restaurants: honest reviews, provider comparisons, and qualified introductions." },
@@ -84,7 +88,10 @@ function ServiceMap() {
 
 function Index() {
   const [tab, setTab] = useState<"op" | "ven">("op");
-  const [sent, setSent] = useState(false);
+  const join = useSubmit((fd) => submitLead({
+    type: str(fd, "role") === "vendor" ? "vendor_join" : "operator_join", name: str(fd, "name"), email: str(fd, "email"),
+    restaurant: str(fd, "business"), consent: bool(fd, "consent"), consent_text: "I agree to be contacted by Hospitalityservis about joining the network.", company_url: str(fd, "company_url"),
+  }));
   const top = [...PROVIDERS].sort((a, b) => b.score - a.score).slice(0, 6);
   return (
     <>
@@ -112,7 +119,7 @@ function Index() {
             </Link>
           </Reveal>
           <div className="mx-auto mt-14 grid max-w-3xl grid-cols-3 gap-px border border-border bg-border">
-            {[[12000, "+", "Operator reviews", ""], [640, "", "Vetted providers", ""], [0, "", "Cost to operators", "$"]].map(([n, s, l, p]) => (
+            {[[CATEGORIES.length, "", "Categories", ""], [PROVIDERS.length, "", "Sample listings", ""], [0, "", "Cost to operators", "$"]].map(([n, s, l, p]) => (
               <div key={l as string} className="bg-background p-4 sm:p-5">
                 <div className="font-mono text-2xl font-bold text-primary sm:text-3xl"><CountUp to={n as number} suffix={s as string} prefix={p as string} /></div>
                 <div className="mt-1 font-mono text-[10px] uppercase tracking-wider text-muted-foreground sm:text-xs">{l}</div>
@@ -149,7 +156,7 @@ function Index() {
       </Section>
 
       <Section className="pt-0">
-        <Reveal><Eyebrow>03 / Signals from the field</Eyebrow><h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-5xl">Highest-rated restaurant tech</h2></Reveal>
+        <Reveal><Eyebrow>03 / Signals from the field</Eyebrow><h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-5xl">Sample listings: top rated</h2></Reveal>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{top.map((p) => <ProviderCard key={p.slug} p={p} />)}</div>
       </Section>
 
@@ -219,15 +226,18 @@ function Index() {
         <Eyebrow>07 / Join</Eyebrow>
         <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-5xl">Better connections. Better hospitality.</h2>
         <p className="mt-4 text-muted-foreground">Share your experience or list your business. We'll be in touch.</p>
-        {sent ? (
-          <div className="mt-10 flex items-center justify-center gap-2 border border-primary bg-accent p-6 text-primary"><Check className="h-5 w-5" /> Thanks — we'll reach out shortly.</div>
+        {join.sent ? (
+          <div className="mt-10 text-left"><Sent mode={join.sent}>Thanks. We'll reach out shortly.</Sent></div>
         ) : (
-          <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="mt-10 grid gap-3 text-left sm:grid-cols-2">
-            <input required placeholder="Your name" className={inputCls} />
-            <input required type="email" placeholder="Email" className={inputCls} />
-            <input placeholder="Business name" className={inputCls} />
-            <select className={inputCls}><option>I'm a restaurant operator</option><option>I'm a provider / vendor</option></select>
-            <div className="sm:col-span-2"><Btn type="submit" className="w-full">Join the network</Btn></div>
+          <form onSubmit={join.onSubmit} noValidate className="relative mt-10 grid gap-3 text-left sm:grid-cols-2">
+            <Honeypot />
+            <input name="name" required maxLength={100} placeholder="Your name" className={inputCls} />
+            <input name="email" required type="email" maxLength={255} placeholder="Email" className={inputCls} />
+            <input name="business" maxLength={120} placeholder="Business name" className={inputCls} />
+            <select name="role" className={inputCls}><option value="operator">I'm a restaurant operator</option><option value="vendor">I'm a provider / vendor</option></select>
+            <label className="flex items-start gap-2 text-sm text-muted-foreground sm:col-span-2"><input name="consent" type="checkbox" className="mt-1 accent-[var(--primary)]" />I agree to be contacted by Hospitalityservis about joining the network.</label>
+            <div className="sm:col-span-2"><FormError message={join.err} /></div>
+            <div className="sm:col-span-2"><Btn type="submit" className="w-full">{join.busy ? "Sending..." : "Join the network"}</Btn></div>
           </form>
         )}
       </section>

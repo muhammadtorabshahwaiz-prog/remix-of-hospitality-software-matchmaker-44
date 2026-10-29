@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { Check, Minus } from "lucide-react";
 import { Empty, PageHead, Sample, Section, Stars } from "@/components/site";
 import { getCategory, getProvider, type Provider } from "@/data/site";
@@ -10,7 +11,7 @@ export const Route = createFileRoute("/compare")({
     b: typeof s["b"] === "string" && s["b"] ? s["b"] : undefined,
     c: typeof s["c"] === "string" && s["c"] ? s["c"] : undefined,
   }),
-  head: () => ({ meta: [
+  head: () => ({ links: [canonical("/compare")], meta: [
     { title: "Compare Restaurant Software Side by Side — Hospitalityservis" },
     { name: "description", content: "Compare up to 3 restaurant software providers on rating, pricing, features, hardware, countries and contract terms." },
     { property: "og:title", content: "Compare Restaurant Software — Hospitalityservis" },

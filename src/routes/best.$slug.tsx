@@ -1,10 +1,11 @@
+import { canonical } from "@/lib/seo";
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { Empty, PageHead, ProviderCard, Sample, Section } from "@/components/site";
 import { BEST, providersIn } from "@/data/site";
 
 export const Route = createFileRoute("/best/$slug")({
   loader: ({ params }) => { const b = BEST.find((x) => x.slug === params.slug); if (!b) throw notFound(); return b; },
-  head: ({ loaderData }) => ({ meta: loaderData ? [
+  head: ({ loaderData }) => ({ links: loaderData ? [canonical(`/best/${loaderData.slug}`)] : [], meta: loaderData ? [
     { title: `${loaderData.title} (2026) — Hospitalityservis` },
     { name: "description", content: loaderData.lead },
     { property: "og:title", content: `${loaderData.title} — Hospitalityservis` },

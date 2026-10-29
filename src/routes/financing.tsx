@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { useState } from "react";
 import { AlertTriangle, Landmark, TrendingUp, Wrench, Wheat } from "lucide-react";
 import { Card } from "@/components/fx";
@@ -6,7 +7,7 @@ import { Btn, PageHead, ProviderCard, Section, inputCls } from "@/components/sit
 import { providersIn } from "@/data/site";
 
 export const Route = createFileRoute("/financing")({
-  head: () => ({ meta: [
+  head: () => ({ links: [canonical("/financing")], meta: [
     { title: "Restaurant Financing & Loans Hub — Hospitalityservis" },
     { name: "description", content: "Compare merchant cash advances, revenue-based financing, equipment loans and food-credit programs for restaurants." },
     { property: "og:title", content: "Restaurant Financing Hub — Hospitalityservis" },

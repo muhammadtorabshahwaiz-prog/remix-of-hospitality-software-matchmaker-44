@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { Card, Reveal } from "@/components/fx";
 import { PageHead, Section } from "@/components/site";
 
 export const Route = createFileRoute("/terms")({
-  head: () => ({ meta: [
+  head: () => ({ links: [canonical("/terms")], meta: [
     { title: "Terms of Use \u2014 Hospitalityservis" },
     { name: "description", content: "Placeholder terms \u2014 have counsel review before launch." },
     { property: "og:title", content: "Terms of Use \u2014 Hospitalityservis" },

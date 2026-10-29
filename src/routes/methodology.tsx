@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { Card, Reveal } from "@/components/fx";
 import { PageHead, Section } from "@/components/site";
 
 export const Route = createFileRoute("/methodology")({
-  head: () => ({ meta: [
+  head: () => ({ links: [canonical("/methodology")], meta: [
     { title: "How Ratings Work \u2014 Hospitalityservis Methodology" },
     { name: "description", content: "How ratings are calculated and how we make money. Plain-language detail on scoring, verification and our business model." },
     { property: "og:title", content: "How Ratings Work \u2014 Hospitalityservis Methodology" },
