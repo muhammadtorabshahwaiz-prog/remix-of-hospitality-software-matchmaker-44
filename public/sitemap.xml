@@ -13,9 +13,28 @@
   <url><loc>https://hospitalityservis.com/disclosure</loc></url>
   <url><loc>https://hospitalityservis.com/privacy</loc></url>
   <url><loc>https://hospitalityservis.com/terms</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/crm</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/marketing-automation</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/sales-engagement</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/customer-support</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/ai-phone-answering</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/project-management</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/team-collaboration</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/video-conferencing</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/esignature-documents</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/hr-software</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/accounting</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/expense-management</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/cybersecurity</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/identity-access</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/it-service-management</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/cloud-devops</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/business-intelligence</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/ai-assistants</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/ecommerce-platforms</loc></url>
+  <url><loc>https://hospitalityservis.com/categories/website-builders</loc></url>
   <url><loc>https://hospitalityservis.com/categories/pos-systems</loc></url>
   <url><loc>https://hospitalityservis.com/categories/payments</loc></url>
-  <url><loc>https://hospitalityservis.com/categories/ai-phone-answering</loc></url>
   <url><loc>https://hospitalityservis.com/categories/funding-loans</loc></url>
   <url><loc>https://hospitalityservis.com/categories/reservations</loc></url>
   <url><loc>https://hospitalityservis.com/categories/online-ordering</loc></url>
@@ -24,6 +43,71 @@
   <url><loc>https://hospitalityservis.com/categories/inventory-back-office</loc></url>
   <url><loc>https://hospitalityservis.com/categories/payroll-scheduling</loc></url>
   <url><loc>https://hospitalityservis.com/categories/delivery-management</loc></url>
+  <url><loc>https://hospitalityservis.com/software/salesforce</loc></url>
+  <url><loc>https://hospitalityservis.com/software/hubspot-crm</loc></url>
+  <url><loc>https://hospitalityservis.com/software/zoho-crm</loc></url>
+  <url><loc>https://hospitalityservis.com/software/pipedrive</loc></url>
+  <url><loc>https://hospitalityservis.com/software/marketo-engage</loc></url>
+  <url><loc>https://hospitalityservis.com/software/activecampaign</loc></url>
+  <url><loc>https://hospitalityservis.com/software/mailchimp</loc></url>
+  <url><loc>https://hospitalityservis.com/software/outreach</loc></url>
+  <url><loc>https://hospitalityservis.com/software/salesloft</loc></url>
+  <url><loc>https://hospitalityservis.com/software/apollo-io</loc></url>
+  <url><loc>https://hospitalityservis.com/software/zendesk</loc></url>
+  <url><loc>https://hospitalityservis.com/software/freshdesk</loc></url>
+  <url><loc>https://hospitalityservis.com/software/intercom</loc></url>
+  <url><loc>https://hospitalityservis.com/software/slang-ai</loc></url>
+  <url><loc>https://hospitalityservis.com/software/loman</loc></url>
+  <url><loc>https://hospitalityservis.com/software/popmenu-answering</loc></url>
+  <url><loc>https://hospitalityservis.com/software/retell-ai</loc></url>
+  <url><loc>https://hospitalityservis.com/software/vapi</loc></url>
+  <url><loc>https://hospitalityservis.com/software/synthflow</loc></url>
+  <url><loc>https://hospitalityservis.com/software/asana</loc></url>
+  <url><loc>https://hospitalityservis.com/software/monday-com</loc></url>
+  <url><loc>https://hospitalityservis.com/software/clickup</loc></url>
+  <url><loc>https://hospitalityservis.com/software/jira</loc></url>
+  <url><loc>https://hospitalityservis.com/software/slack</loc></url>
+  <url><loc>https://hospitalityservis.com/software/microsoft-teams</loc></url>
+  <url><loc>https://hospitalityservis.com/software/notion</loc></url>
+  <url><loc>https://hospitalityservis.com/software/zoom</loc></url>
+  <url><loc>https://hospitalityservis.com/software/webex</loc></url>
+  <url><loc>https://hospitalityservis.com/software/whereby</loc></url>
+  <url><loc>https://hospitalityservis.com/software/docusign</loc></url>
+  <url><loc>https://hospitalityservis.com/software/pandadoc</loc></url>
+  <url><loc>https://hospitalityservis.com/software/dropbox-sign</loc></url>
+  <url><loc>https://hospitalityservis.com/software/rippling</loc></url>
+  <url><loc>https://hospitalityservis.com/software/bamboohr</loc></url>
+  <url><loc>https://hospitalityservis.com/software/deel</loc></url>
+  <url><loc>https://hospitalityservis.com/software/quickbooks</loc></url>
+  <url><loc>https://hospitalityservis.com/software/xero</loc></url>
+  <url><loc>https://hospitalityservis.com/software/freshbooks</loc></url>
+  <url><loc>https://hospitalityservis.com/software/expensify</loc></url>
+  <url><loc>https://hospitalityservis.com/software/ramp</loc></url>
+  <url><loc>https://hospitalityservis.com/software/brex</loc></url>
+  <url><loc>https://hospitalityservis.com/software/crowdstrike</loc></url>
+  <url><loc>https://hospitalityservis.com/software/sentinelone</loc></url>
+  <url><loc>https://hospitalityservis.com/software/sophos</loc></url>
+  <url><loc>https://hospitalityservis.com/software/okta</loc></url>
+  <url><loc>https://hospitalityservis.com/software/1password</loc></url>
+  <url><loc>https://hospitalityservis.com/software/auth0</loc></url>
+  <url><loc>https://hospitalityservis.com/software/servicenow</loc></url>
+  <url><loc>https://hospitalityservis.com/software/freshservice</loc></url>
+  <url><loc>https://hospitalityservis.com/software/jira-service-management</loc></url>
+  <url><loc>https://hospitalityservis.com/software/digitalocean</loc></url>
+  <url><loc>https://hospitalityservis.com/software/vercel</loc></url>
+  <url><loc>https://hospitalityservis.com/software/github</loc></url>
+  <url><loc>https://hospitalityservis.com/software/tableau</loc></url>
+  <url><loc>https://hospitalityservis.com/software/power-bi</loc></url>
+  <url><loc>https://hospitalityservis.com/software/looker</loc></url>
+  <url><loc>https://hospitalityservis.com/software/jasper</loc></url>
+  <url><loc>https://hospitalityservis.com/software/grammarly</loc></url>
+  <url><loc>https://hospitalityservis.com/software/copy-ai</loc></url>
+  <url><loc>https://hospitalityservis.com/software/shopify</loc></url>
+  <url><loc>https://hospitalityservis.com/software/bigcommerce</loc></url>
+  <url><loc>https://hospitalityservis.com/software/woocommerce</loc></url>
+  <url><loc>https://hospitalityservis.com/software/wix</loc></url>
+  <url><loc>https://hospitalityservis.com/software/squarespace</loc></url>
+  <url><loc>https://hospitalityservis.com/software/webflow</loc></url>
   <url><loc>https://hospitalityservis.com/software/toast</loc></url>
   <url><loc>https://hospitalityservis.com/software/square-for-restaurants</loc></url>
   <url><loc>https://hospitalityservis.com/software/clover</loc></url>
@@ -31,9 +115,6 @@
   <url><loc>https://hospitalityservis.com/software/stax</loc></url>
   <url><loc>https://hospitalityservis.com/software/helcim</loc></url>
   <url><loc>https://hospitalityservis.com/software/payment-depot</loc></url>
-  <url><loc>https://hospitalityservis.com/software/slang-ai</loc></url>
-  <url><loc>https://hospitalityservis.com/software/loman</loc></url>
-  <url><loc>https://hospitalityservis.com/software/popmenu-answering</loc></url>
   <url><loc>https://hospitalityservis.com/software/inkind</loc></url>
   <url><loc>https://hospitalityservis.com/software/toast-capital</loc></url>
   <url><loc>https://hospitalityservis.com/software/credibly</loc></url>
@@ -59,8 +140,13 @@
   <url><loc>https://hospitalityservis.com/software/olo-dispatch</loc></url>
   <url><loc>https://hospitalityservis.com/software/deliverect</loc></url>
   <url><loc>https://hospitalityservis.com/software/otter</loc></url>
-  <url><loc>https://hospitalityservis.com/best/best-pos-for-food-trucks</loc></url>
+  <url><loc>https://hospitalityservis.com/best/best-crm-for-small-business</loc></url>
+  <url><loc>https://hospitalityservis.com/best/best-project-management-tools</loc></url>
+  <url><loc>https://hospitalityservis.com/best/best-customer-support-software</loc></url>
+  <url><loc>https://hospitalityservis.com/best/best-accounting-software</loc></url>
+  <url><loc>https://hospitalityservis.com/best/best-cybersecurity-software</loc></url>
   <url><loc>https://hospitalityservis.com/best/best-ai-phone-answering</loc></url>
+  <url><loc>https://hospitalityservis.com/best/best-pos-for-food-trucks</loc></url>
   <url><loc>https://hospitalityservis.com/best/best-restaurant-payment-processing</loc></url>
   <url><loc>https://hospitalityservis.com/best/best-restaurant-funding</loc></url>
   <url><loc>https://hospitalityservis.com/best/best-loyalty-programs</loc></url>

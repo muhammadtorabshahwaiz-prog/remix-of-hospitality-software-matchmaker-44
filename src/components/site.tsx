@@ -52,9 +52,9 @@ export function Empty({ title, children }: { title: string; children?: ReactNode
   );
 }
 export function SkeletonCards({ n = 3 }: { n?: number }) {
-  return <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{Array.from({ length: n }, (_, i) => <div key={i} className="h-44 animate-pulse border border-border bg-card" />)}</div>;
+  return <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{Array.from({ length: n }, (_, i) => <div key={i} className="h-44 animate-pulse border border-border bg-card" />)}</div>;
 }
-export const inputCls = "w-full border border-input bg-card px-4 py-3 text-sm outline-none placeholder:text-muted-foreground focus:border-primary";
+export const inputCls = "w-full border border-input bg-card px-5 py-3.5 text-sm outline-none placeholder:text-muted-foreground focus:border-primary";
 
 /* ---------- breadcrumbs & page header ---------- */
 export function Crumbs({ items }: { items: { label: string; to?: string; params?: Record<string, string> }[] }) {
@@ -73,7 +73,7 @@ export function Crumbs({ items }: { items: { label: string; to?: string; params?
 export function PageHead({ crumbs, eyebrow, title, children }: { crumbs: Parameters<typeof Crumbs>[0]["items"]; eyebrow?: string; title: ReactNode; children?: ReactNode }) {
   return (
     <section className="border-b border-border">
-      <div className="mx-auto max-w-7xl px-4 pb-12 pt-10 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 pb-16 pt-12 sm:px-6">
         <Crumbs items={crumbs} />
         <Reveal className="mt-8">
           {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
@@ -84,7 +84,7 @@ export function PageHead({ crumbs, eyebrow, title, children }: { crumbs: Paramet
     </section>
   );
 }
-export const Section = ({ children, className = "" }: { children: ReactNode; className?: string }) => <section className={`mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20 ${className}`}>{children}</section>;
+export const Section = ({ children, className = "" }: { children: ReactNode; className?: string }) => <section className={`mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-28 ${className}`}>{children}</section>;
 
 /* ---------- provider card ---------- */
 export function ProviderCard({ p, rank }: { p: Provider; rank?: number }) {
@@ -92,7 +92,7 @@ export function ProviderCard({ p, rank }: { p: Provider; rank?: number }) {
   const on = sel.includes(p.slug);
   const cat = getCategory(p.category);
   return (
-    <Card tilt className="flex h-full flex-col p-6">
+    <Card tilt className="flex h-full flex-col p-8">
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
           <div className="grid h-11 w-11 shrink-0 place-items-center border border-border bg-background font-mono text-sm text-primary">{rank ? String(rank).padStart(2, "0") : p.name.slice(0, 2).toUpperCase()}</div>
@@ -180,7 +180,7 @@ export function CommandPalette({ open, setOpen }: { open: boolean; setOpen: (v: 
 export function Logo({ className = "h-9 w-9 text-sm" }: { className?: string }) {
   return <div className={`grid shrink-0 place-items-center bg-primary font-mono font-bold text-primary-foreground ${className}`}>hs</div>;
 }
-const NAV = [["Categories", "/categories"], ["Reviews", "/reviews"], ["Compare", "/compare"], ["Financing", "/financing"], ["For vendors", "/for-vendors"]] as const;
+const NAV = [["Categories", "/categories"], ["Reviews", "/reviews"], ["Compare", "/compare"], ["For vendors", "/for-vendors"]] as const;
 
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -218,8 +218,8 @@ export function Nav() {
 
 export function Footer() {
   const cols: [string, [string, string][]][] = [
-    ["Discover", [["Categories", "/categories"], ["Reviews", "/reviews"], ["Compare", "/compare"], ["Financing", "/financing"]]],
-    ["Best of", [["POS for food trucks", "/best/best-pos-for-food-trucks"], ["AI phone answering", "/best/best-ai-phone-answering"], ["Payment processing", "/best/best-restaurant-payment-processing"]]],
+    ["Discover", [["Categories", "/categories"], ["Reviews", "/reviews"], ["Compare", "/compare"], ["Financing hub", "/financing"]]],
+    ["Best of", [["CRM software", "/best/best-crm-for-small-business"], ["Project management", "/best/best-project-management-tools"], ["Customer support", "/best/best-customer-support-software"], ["Accounting", "/best/best-accounting-software"]]],
     ["Company", [["About", "/about"], ["Methodology", "/methodology"], ["For vendors", "/for-vendors"], ["Contact", "/contact"]]],
     ["Legal", [["Disclosure", "/disclosure"], ["Privacy", "/privacy"], ["Terms", "/terms"]]],
   ];
@@ -229,7 +229,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.3fr_repeat(4,1fr)]">
         <div>
           <div className="flex items-center gap-3"><Logo /><span className="font-semibold">Hospitalityservis</span></div>
-          <p className="mt-4 max-w-xs text-sm text-muted-foreground">Where hospitality connects, evaluates, and grows.</p>
+          <p className="mt-4 max-w-xs text-sm text-muted-foreground">Where software connects, evaluates, and grows.</p>
         </div>
         {cols.map(([h, links]) => (
           <div key={h}>

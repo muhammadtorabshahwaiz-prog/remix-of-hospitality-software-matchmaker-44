@@ -24,12 +24,12 @@ function Page() {
     <>
       <PageHead crumbs={[{ label: "Best of" }, { label: b.title }]} eyebrow="2026 ranking" title={b.title}>{b.lead} <Sample /></PageHead>
       <Section>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{list.map((p, i) => <ProviderCard key={p.slug} p={p} rank={i + 1} />)}</div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{list.map((p, i) => <ProviderCard key={p.slug} p={p} rank={i + 1} />)}</div>
       </Section>
       <Section className="pt-0">
         <div className="brackets border border-border bg-card p-8">
           <h2 className="text-2xl font-bold">Methodology</h2>
-          <p className="mt-3 text-muted-foreground">Rankings combine operator review scores (ease, value, support, features), review volume and recency, and our own interviews with operators. Paid placements are labeled and never change rank order.</p>
+          <p className="mt-3 text-muted-foreground">Rankings combine user review scores (ease, value, support, features), review volume and recency. Paid placements are labeled and never change rank order.</p>
           <Link to="/methodology" className="mt-4 inline-block text-sm text-primary">Full methodology</Link>
         </div>
       </Section>

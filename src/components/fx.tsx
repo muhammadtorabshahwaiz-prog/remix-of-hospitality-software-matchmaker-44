@@ -43,7 +43,7 @@ export function DotField() {
     const c = ref.current!, ctx = c.getContext("2d")!;
     const mobile = !fine(), still = reduced();
     const gap = mobile ? 34 : 24, dpr = Math.min(devicePixelRatio, mobile ? 1 : 2);
-    const acc = css("--primary") || "#c8ff3d", dim = css("--border") || "#25292d";
+    const acc = css("--primary") || "#ff4d2e", dim = css("--border") || "#25292d";
     let w = 0, h = 0, raf = 0, last = 0, px = -9999, py = -9999, scan = 0;
     const resize = () => { w = innerWidth; h = innerHeight; c.width = w * dpr; c.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
     const mv = (e: PointerEvent) => { px = e.clientX; py = e.clientY; };
@@ -180,7 +180,7 @@ export function Card({ children, className = "", tilt = false, style }: { childr
 }
 
 /* Scramble word */
-const WORDS = ["Grows.", "Saves Money.", "Finds Partners.", "Wins Rush Hour."];
+const WORDS = ["Grows.", "Saves Money.", "Finds Software.", "Wins Customers."];
 export function Scramble() {
   const [txt, setTxt] = useState(WORDS[0]!);
   useEffect(() => {

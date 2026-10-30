@@ -10,9 +10,9 @@ import { submitReview } from "@/lib/submit";
 export const Route = createFileRoute("/write-review")({
   head: () => ({ links: [canonical("/write-review")], meta: [
     { title: "Write a Review — Hospitalityservis" },
-    { name: "description", content: "Share your honest experience with a restaurant software or service provider." },
+    { name: "description", content: "Share your honest experience with a software product." },
     { property: "og:title", content: "Write a Review — Hospitalityservis" },
-    { property: "og:description", content: "Help other operators make better decisions." },
+    { property: "og:description", content: "Help other buyers make better decisions." },
   ] }),
   component: Page,
 });
@@ -64,7 +64,7 @@ function Page() {
               {PROVIDERS.map((p) => <option key={p.slug} value={p.slug}>{p.name}</option>)}
             </select>
             <Pick big label="Overall rating" value={rating} onChange={setRating} />
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
               <Pick label="Ease of use" value={sub.ease} onChange={(n) => setSub({ ...sub, ease: n })} />
               <Pick label="Value" value={sub.value} onChange={(n) => setSub({ ...sub, value: n })} />
               <Pick label="Support" value={sub.support} onChange={(n) => setSub({ ...sub, support: n })} />
@@ -72,16 +72,16 @@ function Page() {
             </div>
             <input name="title" required maxLength={120} placeholder="Review title" className={inputCls} />
             <textarea name="body" required rows={6} maxLength={4000} placeholder="What works, what doesn't, and who it's best for" className={inputCls} />
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               <input name="name" required maxLength={100} placeholder="Your name" className={inputCls} />
               <input name="email" required type="email" maxLength={255} placeholder="Email (not published)" className={inputCls} />
-              <input name="business" maxLength={120} placeholder="Business name" className={inputCls} />
-              <input name="city" maxLength={120} placeholder="City, State" className={inputCls} />
+              <input name="business" maxLength={120} placeholder="Company" className={inputCls} />
+              <input name="city" maxLength={120} placeholder="City / Country" className={inputCls} />
             </div>
             <fieldset className="grid gap-3 border border-border p-4">
               <legend className={`px-2 ${lbl}`}>Disclosure</legend>
               <label className="flex items-start gap-2 text-sm text-muted-foreground"><input type="checkbox" checked={incentivized} onChange={(e) => setIncentivized(e.target.checked)} className="mt-1 accent-[var(--primary)]" />I received a discount, gift or other incentive in connection with this review.</label>
-              <textarea name="relationship" rows={2} maxLength={500} placeholder="Any commercial relationship with this provider (employee, partner, referral)? Leave blank if none." className={inputCls} />
+              <textarea name="relationship" rows={2} maxLength={500} placeholder="Any commercial relationship with this vendor (employee, partner, referral)? Leave blank if none." className={inputCls} />
             </fieldset>
             <label className="flex items-start gap-2 text-sm text-muted-foreground"><input name="genuine" required type="checkbox" className="mt-1 accent-[var(--primary)]" />This review reflects my genuine experience, and I give permission to publish it after moderation.</label>
             <FormError message={err} />

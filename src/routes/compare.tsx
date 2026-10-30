@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { canonical } from "@/lib/seo";
 import { Check, Minus } from "lucide-react";
 import { Empty, PageHead, Sample, Section, Stars } from "@/components/site";
-import { getCategory, getProvider, type Provider } from "@/data/site";
+import { FEATURES as FEATS, getCategory, getProvider, type Provider } from "@/data/site";
 
 type S = { a?: string | undefined; b?: string | undefined; c?: string | undefined };
 export const Route = createFileRoute("/compare")({
@@ -12,15 +12,14 @@ export const Route = createFileRoute("/compare")({
     c: typeof s["c"] === "string" && s["c"] ? s["c"] : undefined,
   }),
   head: () => ({ links: [canonical("/compare")], meta: [
-    { title: "Compare Restaurant Software Side by Side — Hospitalityservis" },
-    { name: "description", content: "Compare up to 3 restaurant software providers on rating, pricing, features, hardware, countries and contract terms." },
-    { property: "og:title", content: "Compare Restaurant Software — Hospitalityservis" },
+    { title: "Compare Software Side by Side — Hospitalityservis" },
+    { name: "description", content: "Compare up to 3 software products on rating, pricing, features, regions and contract terms." },
+    { property: "og:title", content: "Compare Software — Hospitalityservis" },
     { property: "og:description", content: "Side-by-side comparison of up to 3 providers." },
   ] }),
   component: Page,
 });
 
-const FEATS = ["Online ordering", "Tableside", "Offline mode", "Loyalty", "Inventory", "API", "Multi-location", "24/7 support"];
 
 function Page() {
   const { a, b, c } = Route.useSearch();

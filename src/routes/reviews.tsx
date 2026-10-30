@@ -7,10 +7,10 @@ import { CATEGORIES, REVIEWS, getProvider } from "@/data/site";
 
 export const Route = createFileRoute("/reviews")({
   head: () => ({ links: [canonical("/reviews")], meta: [
-    { title: "Restaurant Software Reviews from Operators — Hospitalityservis" },
-    { name: "description", content: "Honest reviews of POS, payments, AI phone, suppliers and more from restaurant and food truck operators." },
-    { property: "og:title", content: "Operator Reviews — Hospitalityservis" },
-    { property: "og:description", content: "Honest reviews from restaurant operators." },
+    { title: "Software Reviews from Real Users — Hospitalityservis" },
+    { name: "description", content: "Honest software reviews across CRM, support, HR, security, AI, e-commerce, hospitality and more." },
+    { property: "og:title", content: "User Reviews — Hospitalityservis" },
+    { property: "og:description", content: "Honest reviews from real software users." },
   ] }),
   component: Page,
 });
@@ -27,7 +27,7 @@ function Page() {
   });
   return (
     <>
-      <PageHead crumbs={[{ label: "Reviews" }]} eyebrow="Signals from the field" title="All reviews">Every review is from an operator and published with permission. <Sample /></PageHead>
+      <PageHead crumbs={[{ label: "Reviews" }]} eyebrow="Signals from the field" title="All reviews">Every review is moderated and published with the reviewer's permission. <Sample /></PageHead>
       <Section>
         <div className="flex flex-col gap-3 sm:flex-row">
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search reviews..." className={inputCls} />
@@ -36,9 +36,9 @@ function Page() {
         </div>
         <div className="mt-8">
           {!ready ? <SkeletonCards n={6} /> : list.length === 0 ? <Empty title="No reviews match">Try clearing a filter.</Empty> : (
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {list.map((r) => { const p = getProvider(r.provider)!; return (
-                <Card key={r.id} tilt className="p-6">
+                <Card key={r.id} tilt className="p-8">
                   <div className="flex items-center justify-between"><Stars value={r.rating} /><Link to="/software/$slug" params={{ slug: p.slug }} className="font-mono text-[11px] uppercase text-primary">{p.name}</Link></div>
                   <div className="mt-3 font-semibold">{r.title}</div><p className="mt-1 text-sm text-muted-foreground">{r.body}</p>
                   <div className="mt-4 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">{r.author} · {r.business} · {r.date}</div>

@@ -7,7 +7,7 @@ export const canonical = (path: string) => ({ rel: "canonical", href: absUrl(pat
 
 export const organizationLd = () => ({
   "@context": "https://schema.org", "@type": "Organization", name: SITE_NAME, url: SITE_URL,
-  description: "The professional network and trusted marketplace for the restaurant industry.",
+  description: "Software reviews, comparisons and qualified introductions across every category.",
 });
 
 export const breadcrumbLd = (items: { name: string; path: string }[]) => ({

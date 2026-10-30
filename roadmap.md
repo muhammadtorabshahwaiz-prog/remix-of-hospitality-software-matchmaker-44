@@ -11,6 +11,8 @@
 - [x] Embeddable "Reviewed on Hospitalityservis" badge for claimed vendors
 - [x] Trust bar, affiliate disclosure, honest cookie notice
 - [x] SEO: canonical tags, Organization/Breadcrumb/FAQ JSON-LD, sitemap.xml, robots Sitemap line
+- [x] Widened to all software: 30 categories in 7 groups, 97 sample products, generic features/regions, 10 best-of lists
+- [x] Red-orange accent (#ff4d2e), more spacing, larger demo dialog, cleaner home page
 - [ ] Set the real domain in src/lib/site-config.ts and public/sitemap.xml (currently https://hospitalityservis.com)
 - [ ] Connect Lovable Cloud (Supabase) and implement the live branch in src/lib/submit.ts, then set BACKEND_ENABLED = true
 - [ ] Email notifications (Resend) for new leads and reviews
@@ -20,3 +22,4 @@
 - [ ] Analytics (Plausible/GA4) with consent; add events for Request Demo, Compare, Write Review
 - [ ] Replace sample providers/reviews with real data; remove noindex from /go/* once content is approved
 - [ ] Regenerate public/sitemap.xml when providers change (or add a server route)
+- [ ] G2-style extras: rating distribution chart, grid/leader badges, buyer guides, product comparison pages ("A vs B"), vendor-claimed badges on cards, saved lists

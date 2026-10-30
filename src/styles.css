@@ -71,32 +71,32 @@
   --card-foreground: #e8eaed;
   --popover: #121416;
   --popover-foreground: #e8eaed;
-  --primary: #c8ff3d;
-  --primary-foreground: #0b1200;
+  --primary: #ff4d2e;
+  --primary-foreground: #0b0b0c;
   --secondary: #171a1d;
   --secondary-foreground: #e8eaed;
   --muted: #171a1d;
   --muted-foreground: #8b9199;
-  --accent: #141a0a;
-  --accent-foreground: #c8ff3d;
-  --destructive: oklch(0.65 0.22 27);
+  --accent: #1f0f0b;
+  --accent-foreground: #ff4d2e;
+  --destructive: #ff3b6b;
   --destructive-foreground: oklch(0.98 0 0);
   --border: #25292d;
   --input: #25292d;
-  --ring: #c8ff3d;
-  --chart-1: #c8ff3d;
+  --ring: #ff4d2e;
+  --chart-1: #ff4d2e;
   --chart-2: oklch(0.8 0.15 80);
   --chart-3: oklch(0.7 0.12 200);
   --chart-4: oklch(0.6 0.1 250);
   --chart-5: oklch(0.5 0.05 250);
   --sidebar: oklch(0.15 0.005 250);
   --sidebar-foreground: #e8eaed;
-  --sidebar-primary: #c8ff3d;
-  --sidebar-primary-foreground: #0b1200;
+  --sidebar-primary: #ff4d2e;
+  --sidebar-primary-foreground: #0b0b0c;
   --sidebar-accent: oklch(0.22 0.006 250);
   --sidebar-accent-foreground: #e8eaed;
   --sidebar-border: oklch(0.28 0.006 250);
-  --sidebar-ring: #c8ff3d;
+  --sidebar-ring: #ff4d2e;
 }
 
 @layer base {
@@ -114,6 +114,9 @@
   background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse at 50% 30%, black, transparent 75%);
+}
+@utility hero-glow {
+  background: radial-gradient(60% 55% at 50% 0%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 70%);
 }
 @keyframes flow { to { stroke-dashoffset: -40; } }
 @utility flow-line { stroke-dasharray: 6 14; animation: flow 1.6s linear infinite; }

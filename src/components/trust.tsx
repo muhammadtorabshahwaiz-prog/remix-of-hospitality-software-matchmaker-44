@@ -56,12 +56,12 @@ export function CookieBanner() {
 /** Embeddable badge for claimed vendors. Plain HTML so it needs no script and links back to the profile. */
 export function EmbedBadge({ slug, name }: { slug: string; name: string }) {
   const href = absUrl(`/software/${slug}`);
-  const style = "display:inline-block;padding:8px 12px;border:1px solid #c8ff3d;background:#08090a;color:#c8ff3d;font:600 12px/1 monospace;text-decoration:none;letter-spacing:.05em";
+  const style = "display:inline-block;padding:8px 12px;border:1px solid #ff4d2e;background:#08090a;color:#ff4d2e;font:600 12px/1 monospace;text-decoration:none;letter-spacing:.05em";
   const code = `<a href="${href}" target="_blank" rel="noopener" style="${style}">Reviewed on Hospitalityservis</a>`;
   const [copied, setCopied] = useState(false);
   const copy = async () => { try { await navigator.clipboard.writeText(code); setCopied(true); setTimeout(() => setCopied(false), 1500); } catch { /* ignore */ } };
   return (
-    <Card className="p-5">
+    <Card className="p-7">
       <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">Embed badge · {name}</div>
       <a href={href} className="mt-3 inline-block border border-primary bg-background px-3 py-2 font-mono text-xs font-semibold tracking-wider text-primary">Reviewed on Hospitalityservis</a>
       <pre className="mt-3 max-h-28 overflow-auto border border-border bg-background p-3 text-[11px] text-muted-foreground"><code>{code}</code></pre>

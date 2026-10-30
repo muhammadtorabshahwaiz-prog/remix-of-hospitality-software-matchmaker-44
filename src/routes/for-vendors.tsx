@@ -11,9 +11,9 @@ import { PARTNERS } from "@/data/partners";
 export const Route = createFileRoute("/for-vendors")({
   head: () => ({ links: [canonical("/for-vendors")], meta: [
     { title: "For Vendors — Get Listed on Hospitalityservis" },
-    { name: "description", content: "Reach qualified restaurant operators. Free, Pro ($299/mo) and Enterprise plans with reviews, leads and featured placements." },
+    { name: "description", content: "Reach buyers who are actively comparing software. Free, Pro ($299/mo) and Enterprise plans with reviews, leads and featured placements." },
     { property: "og:title", content: "Get Listed — Hospitalityservis for Vendors" },
-    { property: "og:description", content: "Build credibility and get qualified restaurant leads." },
+    { property: "og:description", content: "Build credibility and get qualified software leads." },
   ] }),
   component: Page,
 });
@@ -32,9 +32,9 @@ function Page() {
   }));
   return (
     <>
-      <PageHead crumbs={[{ label: "For vendors" }]} eyebrow="Partner with us" title="Reach restaurants ready to buy.">Build credibility with verified reviews and get qualified introductions to operators actively evaluating solutions.</PageHead>
+      <PageHead crumbs={[{ label: "For vendors" }]} eyebrow="Partner with us" title="Reach buyers ready to decide.">Build credibility with verified reviews and get qualified introductions to buyers actively evaluating solutions.</PageHead>
       <Section>
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-6 lg:grid-cols-3">
           {PLANS.map((p) => (
             <Card key={p.name} className={`p-8 ${p.hot ? "border-primary" : ""}`}>
               <div className="flex items-center justify-between"><div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">{p.name}</div>{p.hot && <span className="bg-primary px-2 py-0.5 font-mono text-[10px] uppercase text-primary-foreground">Popular</span>}</div>
@@ -48,14 +48,14 @@ function Page() {
       <Section className="pt-0">
         <h2 className="text-3xl font-bold">Branded landing pages</h2>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground">Enterprise partners get a dedicated page we host, with a tracked lead form (UTM, referrer and partner recorded). Sample pages:</p>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {PARTNERS.map((p) => <Link key={p.slug} to="/go/$slug" params={{ slug: p.slug }} className="border border-border bg-card p-4 text-sm hover:border-primary"><div className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">/go/{p.slug}</div><div className="mt-2 font-semibold">{p.headline}</div></Link>)}
         </div>
       </Section>
       <Section className="max-w-3xl pt-0">
         <h2 className="text-3xl font-bold">Get listed</h2>
         {sent ? <div className="mt-6"><Sent mode={sent}>Thanks. Our partnerships team will reach out.</Sent></div> : (
-          <form onSubmit={onSubmit} noValidate className="relative mt-6 grid gap-3 sm:grid-cols-2">
+          <form onSubmit={onSubmit} noValidate className="relative mt-6 grid gap-4 sm:grid-cols-2">
             <Honeypot />
             <input name="company" required maxLength={120} placeholder="Company name" className={inputCls} />
             <input name="website" required maxLength={200} placeholder="Website" className={inputCls} />

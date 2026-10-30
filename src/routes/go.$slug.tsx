@@ -55,7 +55,7 @@ function Page() {
               {partner.benefits.map((b) => <li key={b} className="flex gap-3"><Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />{b}</li>)}
             </ul>
             {review && (
-              <Card className="mt-10 max-w-xl p-5">
+              <Card className="mt-10 max-w-xl p-7">
                 <div className="flex items-center justify-between"><Stars value={review.rating} /><Sample /></div>
                 <div className="mt-3 font-semibold">{review.title}</div>
                 <p className="mt-1 text-sm text-muted-foreground">{review.body}</p>
@@ -64,15 +64,15 @@ function Page() {
             )}
             <p className="mt-6 text-sm"><Link to="/software/$slug" params={{ slug: provider.slug }} className="text-primary hover:underline">Read all reviews of {provider.name}</Link></p>
           </Reveal>
-          <Card className="h-fit p-6 sm:p-8">
+          <Card className="h-fit p-8 sm:p-8">
             <h2 className="text-2xl font-bold">{partner.cta}</h2>
-            <p className="mt-1 text-sm text-muted-foreground">Free for operators. No obligation to switch.</p>
+            <p className="mt-1 text-sm text-muted-foreground">Free for buyers. No obligation to switch.</p>
             <div className="mt-5">
               {sent ? <Sent mode={sent}>Request received for {provider.name}.</Sent> : (
                 <form onSubmit={onSubmit} noValidate className="relative grid gap-3">
                   <Honeypot />
                   <input name="name" required maxLength={100} placeholder="Your name" className={inputCls} />
-                  <input name="restaurant" maxLength={120} placeholder="Restaurant or business" className={inputCls} />
+                  <input name="restaurant" maxLength={120} placeholder="Company" className={inputCls} />
                   <input name="email" required type="email" maxLength={255} placeholder="Email" className={inputCls} />
                   <input name="phone" type="tel" maxLength={40} placeholder="Phone (optional)" className={inputCls} />
                   <input name="city" maxLength={120} placeholder="City, State" className={inputCls} />

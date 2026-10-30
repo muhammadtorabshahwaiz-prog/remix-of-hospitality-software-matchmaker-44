@@ -8,10 +8,10 @@ import { providersIn } from "@/data/site";
 
 export const Route = createFileRoute("/financing")({
   head: () => ({ links: [canonical("/financing")], meta: [
-    { title: "Restaurant Financing & Loans Hub — Hospitalityservis" },
-    { name: "description", content: "Compare merchant cash advances, revenue-based financing, equipment loans and food-credit programs for restaurants." },
-    { property: "og:title", content: "Restaurant Financing Hub — Hospitalityservis" },
-    { property: "og:description", content: "Understand restaurant funding options and check eligibility." },
+    { title: "Business Financing & Loans Hub — Hospitalityservis" },
+    { name: "description", content: "Compare merchant cash advances, revenue-based financing, equipment loans and food-credit programs for restaurants and small businesses." },
+    { property: "og:title", content: "Business Financing Hub — Hospitalityservis" },
+    { property: "og:description", content: "Understand business funding options and check eligibility." },
   ] }),
   component: Page,
 });
@@ -32,15 +32,15 @@ function Page() {
   const est = Math.round((rev * (card / 100) * 1.0) / 1000) * 1000;
   return (
     <>
-      <PageHead crumbs={[{ label: "Financing" }]} eyebrow="Funding hub" title="Restaurant financing & loans">Understand your options before you sign. Terms vary by provider and by business.</PageHead>
+      <PageHead crumbs={[{ label: "Financing" }]} eyebrow="Funding hub" title="Business financing & loans">Understand your options before you sign. Terms vary by provider and by business.</PageHead>
       <Section>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {TYPES.map(([I, t, d]) => <Card key={t} className="p-6"><I className="h-6 w-6 text-primary" /><div className="mt-4 text-lg font-semibold">{t}</div><p className="mt-2 text-sm text-muted-foreground">{d}</p></Card>)}
+        <div className="grid gap-6 sm:grid-cols-2">
+          {TYPES.map(([I, t, d]) => <Card key={t} className="p-8"><I className="h-6 w-6 text-primary" /><div className="mt-4 text-lg font-semibold">{t}</div><p className="mt-2 text-sm text-muted-foreground">{d}</p></Card>)}
         </div>
       </Section>
       <Section className="pt-0">
         <div className="grid gap-8 lg:grid-cols-2">
-          <Card className="p-6 sm:p-8">
+          <Card className="p-8 sm:p-8">
             <h2 className="text-2xl font-bold">Eligibility checker</h2>
             <p className="mt-1 text-sm text-muted-foreground">A rough guide only — not an offer or credit decision.</p>
             <div className="mt-6 space-y-5">
@@ -66,7 +66,7 @@ function Page() {
       </Section>
       <Section className="pt-0">
         <h2 className="text-2xl font-bold">Funding providers</h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{providersIn("funding-loans").map((p) => <ProviderCard key={p.slug} p={p} />)}</div>
+        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{providersIn("funding-loans").map((p) => <ProviderCard key={p.slug} p={p} />)}</div>
       </Section>
     </>
   );

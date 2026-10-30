@@ -20,9 +20,9 @@ function Page() {
     <>
       <PageHead crumbs={[{ label: "Terms" }]} eyebrow="Legal" title="Terms of use">{"Placeholder terms \u2014 have counsel review before launch."}</PageHead>
       <Section>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2">
           {BLOCKS.map(([t, d], i) => (
-            <Reveal key={t} delay={i * 0.05}><Card className="h-full p-6"><div className="font-mono text-xs text-primary">0{i + 1}</div><h2 className="mt-3 text-xl font-semibold">{t}</h2><p className="mt-2 text-muted-foreground">{d}</p></Card></Reveal>
+            <Reveal key={t} delay={i * 0.05}><Card className="h-full p-8"><div className="font-mono text-xs text-primary">0{i + 1}</div><h2 className="mt-3 text-xl font-semibold">{t}</h2><p className="mt-2 text-muted-foreground">{d}</p></Card></Reveal>
           ))}
         </div>
       </Section>

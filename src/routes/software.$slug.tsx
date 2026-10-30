@@ -20,7 +20,7 @@ export const Route = createFileRoute("/software/$slug")({
     ] : [],
     meta: loaderData ? [
     { title: `${loaderData.name} Reviews, Pricing & Alternatives — Hospitalityservis` },
-    { name: "description", content: `${loaderData.name}: ${loaderData.tagline} Ratings, pros and cons from restaurant operators.` },
+    { name: "description", content: `${loaderData.name}: ${loaderData.tagline} Ratings, pros and cons from users.` },
     { property: "og:title", content: `${loaderData.name} Reviews — Hospitalityservis` },
     { property: "og:description", content: loaderData.tagline },
     { property: "og:type", content: "product" },
@@ -74,18 +74,18 @@ function Page() {
                 <div key={i} className="brackets relative aspect-video border border-border bg-card grid-bg"><span className="absolute bottom-2 left-2 font-mono text-[10px] uppercase text-muted-foreground">Screenshot {i}</span></div>
               ))}
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <Card className="p-5"><div className="font-semibold">Pros</div><ul className="mt-3 space-y-2 text-sm">{p.pros.map((x) => <li key={x} className="flex gap-2"><Check className="h-4 w-4 text-primary" />{x}</li>)}</ul></Card>
-              <Card className="p-5"><div className="font-semibold">Cons</div><ul className="mt-3 space-y-2 text-sm">{p.cons.map((x) => <li key={x} className="flex gap-2"><Minus className="h-4 w-4 text-muted-foreground" />{x}</li>)}</ul></Card>
+            <div className="grid gap-6 sm:grid-cols-2">
+              <Card className="p-7"><div className="font-semibold">Pros</div><ul className="mt-3 space-y-2 text-sm">{p.pros.map((x) => <li key={x} className="flex gap-2"><Check className="h-4 w-4 text-primary" />{x}</li>)}</ul></Card>
+              <Card className="p-7"><div className="font-semibold">Cons</div><ul className="mt-3 space-y-2 text-sm">{p.cons.map((x) => <li key={x} className="flex gap-2"><Minus className="h-4 w-4 text-muted-foreground" />{x}</li>)}</ul></Card>
             </div>
             <div>
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <h2 className="text-2xl font-bold">Reviews</h2>
                 <select value={minStars} onChange={(e) => setMinStars(+e.target.value)} className={`${inputCls} w-auto py-2`}><option value={0}>All ratings</option><option value={4}>4+ stars</option><option value={5}>5 stars</option></select>
               </div>
-              <div className="mt-5 space-y-4">
+              <div className="mt-5 space-y-6">
                 {reviews.length === 0 ? <Empty title="No reviews match this filter" /> : reviews.map((r) => (
-                  <Card key={r.id} className="p-5">
+                  <Card key={r.id} className="p-7">
                     <div className="flex items-center justify-between"><Stars value={r.rating} /><span className="font-mono text-[11px] text-muted-foreground">{r.date}</span></div>
                     <div className="mt-3 font-semibold">{r.title}</div><p className="mt-1 text-sm text-muted-foreground">{r.body}</p>
                     <div className="mt-3 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">{r.author} · {r.role} · {r.business}</div>
@@ -95,14 +95,14 @@ function Page() {
               <div className="mt-5"><Btn to="/write-review" variant="ghost">Write a review</Btn></div>
             </div>
           </div>
-          <aside className="space-y-4">
-            <Card className="p-5">
+          <aside className="space-y-6">
+            <Card className="p-7">
               <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">Rating breakdown</div>
-              <div className="mt-4 space-y-4">{([["Ease of use", p.ease], ["Value", p.value], ["Support", p.support], ["Features", p.features]] as const).map(([l, v]) => (
+              <div className="mt-4 space-y-6">{([["Ease of use", p.ease], ["Value", p.value], ["Support", p.support], ["Features", p.features]] as const).map(([l, v]) => (
                 <div key={l}><div className="mb-1.5 flex justify-between text-sm"><span>{l}</span><span className="font-mono text-primary">{v.toFixed(1)}</span></div><ScoreBar value={v} /></div>
               ))}</div>
             </Card>
-            <Card className="p-5">
+            <Card className="p-7">
               <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">Pricing summary</div>
               <div className="mt-3 font-mono text-2xl text-primary">{p.priceLabel}</div>
               <div className="mt-2 text-sm text-muted-foreground">{p.contract} · Pricing varies by setup; confirm with the provider.</div>
@@ -115,7 +115,7 @@ function Page() {
       {alts.length > 0 && (
         <Section className="pt-0">
           <h2 className="text-2xl font-bold">Alternatives to {p.name}</h2>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{alts.map((a) => <ProviderCard key={a.slug} p={a} />)}</div>
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{alts.map((a) => <ProviderCard key={a.slug} p={a} />)}</div>
         </Section>
       )}
       <DemoDialog open={askOpen} onOpenChange={setAskOpen} provider={p.name} />
@@ -132,23 +132,23 @@ function DemoDialog({ open, onOpenChange, provider }: { open: boolean; onOpenCha
   }));
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-lg">
+      <DialogContent className="max-h-[90vh] overflow-y-auto p-8 sm:max-w-2xl sm:p-10">
         <DialogHeader>
           <DialogTitle>Request a demo or quote from {provider}</DialogTitle>
-          <DialogDescription>Free for operators, no obligation. Your details are shared only if you tick the consent box.</DialogDescription>
+          <DialogDescription>Free for buyers, no obligation. Your details are shared only if you tick the consent box.</DialogDescription>
         </DialogHeader>
         {sent ? <Sent mode={sent}>Request received for {provider}.</Sent> : (
-          <form onSubmit={onSubmit} noValidate className="relative grid gap-3">
+          <form onSubmit={onSubmit} noValidate className="relative mt-2 grid gap-5 sm:grid-cols-2">
             <Honeypot />
             <input name="name" required maxLength={100} placeholder="Your name" className={inputCls} />
-            <input name="restaurant" maxLength={120} placeholder="Restaurant or business" className={inputCls} />
+            <input name="restaurant" maxLength={120} placeholder="Company" className={inputCls} />
             <input name="email" required type="email" maxLength={255} placeholder="Email" className={inputCls} />
             <input name="phone" type="tel" maxLength={40} placeholder="Phone (optional)" className={inputCls} />
-            <input name="city" maxLength={120} placeholder="City, State" className={inputCls} />
-            <textarea name="notes" rows={3} maxLength={2000} placeholder="What do you need help with?" className={inputCls} />
-            <label className="flex items-start gap-2 text-sm text-muted-foreground"><input name="consent" type="checkbox" className="mt-1 accent-[var(--primary)]" />{consentText}</label>
-            <FormError message={err} />
-            <div><Btn type="submit">{busy ? "Sending..." : "Send request"}</Btn></div>
+            <input name="city" maxLength={120} placeholder="City / Country" className={inputCls} />
+            <textarea name="notes" rows={4} maxLength={2000} placeholder="What are you looking for?" className={`${inputCls} sm:col-span-2`} />
+            <label className="flex items-start gap-3 text-sm text-muted-foreground sm:col-span-2"><input name="consent" type="checkbox" className="mt-1 accent-[var(--primary)]" />{consentText}</label>
+            <div className="sm:col-span-2"><FormError message={err} /></div>
+            <div className="sm:col-span-2"><Btn type="submit">{busy ? "Sending..." : "Send request"}</Btn></div>
           </form>
         )}
       </DialogContent>
