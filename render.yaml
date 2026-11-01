@@ -1,0 +1,30 @@
+# One-click setup for Render (https://render.com): New + > Blueprint > pick this repository.
+services:
+  - type: web
+    name: hospitalityservis
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: APP_ID
+        value: hospitalityservis
+      - key: APP_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false   # paste your MySQL connection string (see BACKEND.md)
+      - key: PUBLIC_URL
+        sync: false   # e.g. https://hospitalityservis.onrender.com (fill in after the first deploy)
+      - key: OWNER_EMAIL
+        sync: false   # your email: you become admin when you sign up
+      - key: CONTACT_INBOX
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        sync: false

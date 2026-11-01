@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Default = the light "Azure" theme. lib/theme.ts rewrites these tokens for every theme and mode. */
+    --background: 0.985 0.005 262;
+    --foreground: 0.22 0.04 262;
+    --card: 1 0 0;
+    --card-foreground: 0.22 0.04 262;
+    --popover: 1 0 0;
+    --popover-foreground: 0.22 0.04 262;
+    --primary: 0.52 0.2 262;
+    --primary-foreground: 0.99 0 0;
+    --secondary: 0.965 0.014 262;
+    --secondary-foreground: 0.25 0.04 262;
+    --muted: 0.965 0.014 262;
+    --muted-foreground: 0.5 0.03 262;
+    --accent: 0.95 0.03 262;
+    --accent-foreground: 0.25 0.05 262;
+    --destructive: 0.55 0.22 25; /* stays red whatever the theme */
+    --destructive-foreground: 0.99 0 0;
+    --border: 0.915 0.015 262;
+    --input: 0.9 0.018 262;
+    --ring: var(--primary);
+    --radius: 0.75rem;
+    --paper: 0.965 0.018 262;
+    --paper-foreground: 0.22 0.04 262;
+    --paper-300: 0.9 0.02 262;
+    --ink-700: 0.46 0.035 262;
+    --rose-500: 0.52 0.2 262;
+    --rose-700: 0.42 0.18 262;
+    --sidebar-background: var(--card);
+    --sidebar-foreground: var(--foreground);
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: var(--primary-foreground);
+    --sidebar-accent: var(--accent);
+    --sidebar-accent-foreground: var(--accent-foreground);
+    --sidebar-border: var(--border);
+    --sidebar-ring: var(--primary);
+  }
+
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; background: oklch(var(--background)); }
+  body {
+    @apply text-foreground;
+    background-color: transparent; /* the page colour comes from <html>, so the map and bit backdrops sit between them */
+    min-width: 320px;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, .font-display { font-family: "Plus Jakarta Sans", system-ui, sans-serif; }
+  h1, h2 { letter-spacing: -0.035em; }
+  button, a, input, select, textarea, summary { @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background; }
+  button, [role="button"], summary, select { cursor: pointer; }
+  ::selection { background: oklch(var(--primary)); color: oklch(var(--primary-foreground)); }
+}
+
+@layer components {
+  .site-container { @apply mx-auto w-full max-w-[1440px] px-4 sm:px-8 lg:px-12; }
+  .display-xl { @apply font-display text-[clamp(2.8rem,6.4vw,6.2rem)] font-extrabold leading-[1.02]; }
+  .display-lg { @apply font-display text-[clamp(2.2rem,4.4vw,4.6rem)] font-extrabold leading-[1.05]; }
+  .display-md { @apply font-display text-3xl font-bold leading-tight sm:text-4xl; }
+  .mono-label { @apply font-sans text-[12.5px] font-semibold tracking-[0.01em]; }
+
+  .btn-primary { @apply relative inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-primary bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground disabled:pointer-events-none disabled:opacity-50; box-shadow: var(--sh-btn); }
+  .btn-secondary { @apply relative inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-border bg-card px-6 py-2.5 text-sm font-semibold text-foreground disabled:pointer-events-none disabled:opacity-50; box-shadow: var(--sh-sm); }
+  .field { @apply min-h-12 w-full rounded-xl border border-input bg-card px-4 py-3 text-base text-foreground placeholder:text-muted-foreground focus:border-primary disabled:opacity-50; box-shadow: var(--sh-sm); }
+  .data-row { @apply border-b border-border; }
+  /* The paper band is always light, whatever the site mode. It gets its own light colour tokens, so cards, buttons and text
+     inside it stay readable in dark mode too (before, dark cards with dark text sat on the light band). */
+  .paper-section {
+    --foreground: var(--paper-foreground); --card: 1 0 0; --card-foreground: var(--paper-foreground);
+    --secondary: 0.94 0.02 var(--theme-h); --secondary-foreground: var(--paper-foreground);
+    --muted: 0.94 0.02 var(--theme-h); --muted-foreground: var(--ink-700);
+    --border: var(--paper-300); --input: var(--paper-300);
+    --primary: 0.5 0.2 var(--theme-h); --primary-foreground: 0.99 0 0;
+    background: oklch(var(--paper) / .66); color: oklch(var(--paper-foreground));
+  }
+  .paper-section .text-muted-foreground { color: oklch(var(--ink-700)); }
+  .paper-section .border-border { border-color: oklch(var(--paper-300)); }
+  /* the stepped transition bars only make sense from the dark theme into the paper band */
+  .line-bar { background: oklch(var(--paper)); }
+  /* on the light page the paper colour is nearly the page colour, so the bars get an accent tint and a hairline to stay visible */
+  html[data-mode="light"] .line-bar { background: oklch(0.88 0.07 var(--theme-h)); box-shadow: 0 1px 0 oklch(0.72 0.12 var(--theme-h) / .45); }
+  .link-underline { @apply relative; }
+  .link-underline::after { content: ""; @apply absolute bottom-0 left-0 h-px w-0 bg-current transition-all duration-200; }
+  .link-underline:hover::after { @apply w-full; }
+}
+
+.font-mono { font-family: "IBM Plex Mono", monospace; }
+.text-balance { text-wrap: balance; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@keyframes node-pulse { 50% { opacity: .55; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* Site-wide cursor effects (see components/cursor-fx.tsx) */
+.cursor-fx, .cursor-fx * { cursor: none !important; }
+.cursor-fx input, .cursor-fx textarea, .cursor-fx select, .cursor-fx [contenteditable="true"] { cursor: text !important; }
+
+/* ---- Theme + mouse reactions (see lib/theme.ts and components/site-fx.tsx) ---- */
+:root { --px: 0; --py: 0; --theme-h: 262; }
+html { transition: none; }
+
+/* ---- Soft elevation: flat surfaces, rounded corners, shadows only underneath (no stacked 3D edges) ---- */
+:root {
+  --sh-sm: 0 1px 2px oklch(0.3 0.05 var(--theme-h) / .06), 0 4px 12px -4px oklch(0.4 0.1 var(--theme-h) / .12);
+  --sh-rest: 0 1px 2px oklch(0.3 0.05 var(--theme-h) / .05), 0 16px 36px -14px oklch(0.42 0.13 var(--theme-h) / .20);
+  --sh-hot: 0 2px 4px oklch(0.3 0.05 var(--theme-h) / .06), 0 28px 52px -16px oklch(0.42 0.15 var(--theme-h) / .34);
+  --sh-btn: 0 8px 20px -8px oklch(var(--primary) / .6);
+}
+html[data-mode="dark"] {
+  --sh-sm: 0 1px 2px rgb(0 0 0 / .35), 0 6px 14px -6px rgb(0 0 0 / .5);
+  --sh-rest: 0 1px 2px rgb(0 0 0 / .35), 0 20px 40px -16px rgb(0 0 0 / .65);
+  --sh-hot: 0 2px 4px rgb(0 0 0 / .4), 0 30px 56px -16px rgb(0 0 0 / .75);
+  --sh-btn: 0 8px 22px -8px oklch(var(--primary) / .55);
+}
+
+.slab {
+  position: relative;
+  background: oklch(var(--card));
+  border: 1px solid oklch(var(--border));
+  border-radius: 1.25rem;
+  box-shadow: var(--sh-rest);
+  transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease, border-color .28s ease;
+}
+.slab-flat { box-shadow: var(--sh-sm); }
+.slab:hover { transform: translateY(-3px); box-shadow: var(--sh-hot); }
+/* cursor spotlight on cards: --mx / --my are set by site-fx.tsx */
+.slab::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .25s;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), oklch(var(--primary) / .10), transparent 62%);
+}
+.slab[data-fx-hot]::before { opacity: 1; }
+
+.edge { background: oklch(var(--card)); border-radius: 9999px; box-shadow: var(--sh-sm); transition: transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s, border-color .2s, color .2s; }
+.edge:hover { transform: translateY(-2px); box-shadow: var(--sh-rest); border-color: oklch(var(--primary) / .4); }
+.edge:active { transform: translateY(0); box-shadow: var(--sh-sm); }
+/* a small label chip on top of a surface */
+.slab-tag { display: inline-block; background: oklch(var(--secondary)); border: 1px solid oklch(var(--border)); border-radius: .75rem; box-shadow: var(--sh-sm); }
+/* The paper band is light in both modes: its cards are hard-set to white with dark text so no theme variable can turn them dark. */
+.paper-section .slab { background: oklch(1 0 0) !important; color: oklch(0.22 0.04 var(--theme-h)) !important; border-color: oklch(0.9 0.02 var(--theme-h)) !important; }
+.paper-section .slab h1, .paper-section .slab h2, .paper-section .slab h3, .paper-section .slab p, .paper-section .slab svg { color: inherit; }
+.paper-section .slab .text-muted-foreground { color: oklch(0.46 0.035 var(--theme-h)) !important; }
+.paper-section .btn-secondary { background: oklch(1 0 0); color: oklch(0.22 0.04 var(--theme-h)); border-color: oklch(0.88 0.03 var(--theme-h)); }
+
+.data-row { position: relative; transition: background-color .2s, box-shadow .2s; }
+.data-row:hover { background: oklch(var(--secondary)); }
+
+[data-fx-card] { transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease, border-color .28s ease; }
+[data-fx-card][data-fx-hot] {
+  transform: perspective(900px) translate3d(0, -4px, 0) rotateX(var(--tiltx, 0deg)) rotateY(var(--tilty, 0deg));
+  border-color: oklch(var(--primary) / .45);
+  box-shadow: var(--sh-hot);
+}
+/* buttons lean toward the cursor */
+.btn-primary, .btn-secondary { transition-property: color, background-color, border-color, transform, box-shadow; transition-duration: .2s; }
+[data-fx-hot="btn"] { transform: translate(var(--bx, 0px), calc(var(--by, 0px) - 1px)); }
+.btn-primary:hover { background: oklch(var(--primary) / .92); }
+.btn-secondary:hover { border-color: oklch(var(--primary) / .5); }
+.btn-primary:active, .btn-secondary:active { transform: translateY(1px) !important; }
+
+.site-header { background: oklch(var(--background) / .82); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); }
+
+/* headings drift against the cursor for depth */
+@media (prefers-reduced-motion: no-preference) and (pointer: fine) {
+  .display-xl, .display-lg { transform: translate3d(calc(var(--px, 0) * -9px), calc(var(--py, 0) * -5px), 0); will-change: transform; }
+  .display-md { transform: translate3d(calc(var(--px, 0) * -4px), calc(var(--py, 0) * -2px), 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-fx-card][data-fx-hot], [data-fx-hot="btn"] { transform: none; }
+}
+
+/* ---- "Terminal" texture: faint scanlines over the whole site, and a short glitch that freezes and tears the page ---- */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 80; pointer-events: none;
+  background: repeating-linear-gradient(0deg, oklch(0.3 0.05 var(--theme-h) / .035) 0 1px, transparent 1px 3px);
+}
+html[data-mode="dark"] body::after { background: repeating-linear-gradient(0deg, rgb(255 255 255 / .022) 0 1px, transparent 1px 3px); }
+
+@keyframes gl-jit {
+  0% { transform: translate3d(0, 0, 0); }
+  15% { transform: translate3d(-4px, 0, 0); }
+  30% { transform: translate3d(5px, 0, 0) skewX(-.5deg); }
+  45% { transform: translate3d(-2px, 0, 0); }
+  60% { transform: translate3d(3px, 0, 0) skewX(.4deg); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+html.glitch main, html.glitch header { animation: gl-jit .3s steps(1, end) 1; }
+html.glitch h1, html.glitch h2, html.glitch h3 { text-shadow: 3px 0 oklch(0.66 0.24 25 / .6), -3px 0 oklch(0.78 0.14 205 / .6); }
+html.glitch .slab { border-color: oklch(0.66 0.24 25 / .5); }
+
+/* dragging a background node must not select page text */
+html.fx-dragging, html.fx-dragging * { user-select: none !important; -webkit-user-select: none !important; }
+
+/* the core stage is a rounded dark card in both modes, with a soft shadow beneath it */
+.slab-stage { box-shadow: var(--sh-rest); }
+/* any older pill buttons that still carry mono/uppercase utilities read as normal text */
+.edge { text-transform: none !important; letter-spacing: normal !important; font-family: inherit !important; font-size: 0.875rem !important; font-weight: 600; }
+
+/* Accessibility settings (see lib/a11y.ts and components/a11y-menu.tsx) */
+html[data-contrast="1"] { --muted-foreground: var(--foreground) !important; --border: var(--foreground) !important; --input: var(--foreground) !important; }
+html[data-contrast="1"] a:not(.btn-primary):not(.btn-secondary) { text-decoration: underline; }
+html[data-readable="1"], html[data-readable="1"] * { font-family: Verdana, Tahoma, "Trebuchet MS", sans-serif !important; letter-spacing: 0.015em; }
+html[data-readable="1"] body { line-height: 1.75; }
+html[data-calm="1"] *, html[data-calm="1"] *::before, html[data-calm="1"] *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+:focus-visible { outline: 3px solid oklch(var(--primary)); outline-offset: 3px; }
